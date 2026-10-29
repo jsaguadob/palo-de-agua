@@ -8,6 +8,15 @@ Caso de estudio: monitoreo de lluvia y precipitación (HTML, CSS y JavaScript).
 
 Fase de diseño. Por ahora el repositorio solo contiene el wireframe y el mockup. La aplicación funcional viene después.
 
+## Documentación
+
+| Documento | Qué contiene |
+| --- | --- |
+| [Contexto del problema](docs/01-contexto-del-problema.md) | Situación, problema, objetivos, alcance, usuarios, reglas del negocio y preguntas abiertas |
+| [Componentes del desarrollo](docs/02-componentes-del-desarrollo.md) | Tecnología, pantallas, módulos, modelo de datos, flujo y requisitos no funcionales |
+| [Historias de usuario](docs/03-historias-de-usuario.md) | 14 historias con criterios de aceptación, agrupadas en 5 épicas |
+| [Backlog](docs/04-backlog.md) | Backlog priorizado, plan de sprints, definición de "Hecho" y riesgos |
+
 ## Contenido
 
 | Archivo | Qué es |
