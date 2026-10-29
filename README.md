@@ -29,6 +29,12 @@ Los registros se guardan en el navegador (`localStorage`), así que siguen ahí 
 | [Componentes del desarrollo](docs/02-componentes-del-desarrollo.md) | Tecnología, pantallas, módulos, modelo de datos, flujo y requisitos no funcionales |
 | [Historias de usuario](docs/03-historias-de-usuario.md) | 14 historias con criterios de aceptación, agrupadas en 5 épicas |
 | [Backlog](docs/04-backlog.md) | Backlog priorizado, plan de sprints, definición de "Hecho" y riesgos |
+| [Ingeniería de requerimientos](docs/05-ingenieria-de-requerimientos.md) | Proceso, fuentes, interesados, necesidades, priorización, validación y pendientes |
+| [Especificación de requisitos (ERS)](docs/06-especificacion-de-requisitos.md) | 18 requisitos funcionales, 11 no funcionales, reglas del negocio y modelo de datos |
+| [Casos de uso](docs/07-casos-de-uso.md) | 8 casos de uso con diagrama, flujos y estados de la interfaz |
+| [Matriz de trazabilidad](docs/08-matriz-de-trazabilidad.md) | Necesidad → requisito → historia → caso de uso → módulo → prueba |
+| [Plan de pruebas](docs/09-plan-de-pruebas.md) | Estrategia, 37 pruebas automáticas con resultado y pruebas manuales |
+| [Arquitectura y diseño](docs/10-arquitectura-y-diseno.md) | Módulos, secuencia, modelo de datos y decisiones de diseño |
 
 ## Estructura
 
@@ -39,7 +45,7 @@ js/                 config, util, calculo, almacen, auth, registro, reloj, clave
 img/                Logo: original, vertical, horizontal y versiones para la web
 diseno/             wireframe.html (boceto a mano) y mockup.html (alta fidelidad)
 docs/               Contexto, componentes, historias de usuario y backlog
-tests/              Prueba del cálculo (node tests/calculo.test.js)
+tests/              Pruebas automáticas (npm install y npm test)
 ```
 
 ## Qué cubre la aplicación

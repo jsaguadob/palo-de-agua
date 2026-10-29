@@ -1,0 +1,13 @@
+{
+  "name": "palo-de-agua",
+  "version": "1.0.0",
+  "description": "Aplicación web para registrar y vigilar la lluvia por zonas en Cali",
+  "private": true,
+  "scripts": {
+    "test": "node tests/calculo.test.js && node tests/e2e.test.js"
+  },
+  "devDependencies": {
+    "jsdom": "^24.0.0"
+  },
+  "license": "UNLICENSED"
+}
