@@ -65,20 +65,23 @@ Registrar otra zona ─▶ Pantalla de clave ──(clave correcta)──▶ Pan
 ```
 palo-de-agua/
 ├── index.html
-├── css/
-│   └── estilos.css
+├── css/estilos.css
 ├── js/
-│   ├── auth.js
-│   ├── registro.js
-│   ├── calculo.js
-│   ├── reloj.js
-│   ├── clave.js
-│   ├── grafica.js
-│   ├── foto.js
-│   └── almacen.js
-├── img/                 (logos)
-├── diseno/              (wireframe.html, mockup.html)
-└── docs/
+│   ├── config.js      reglas del negocio y credenciales
+│   ├── util.js        formato de números, horas y fechas
+│   ├── calculo.js     cálculo y ajuste del 5,3 %
+│   ├── almacen.js     localStorage
+│   ├── auth.js        ingreso y sesión
+│   ├── registro.js    validación del formulario
+│   ├── reloj.js       reloj de espera
+│   ├── clave.js       clave de seguridad
+│   ├── grafica.js     gráfica de barras
+│   ├── foto.js        captura de foto
+│   └── app.js         conecta todo
+├── img/               logos
+├── diseno/            wireframe.html y mockup.html
+├── docs/
+└── tests/
 ```
 
 ## Requisitos no funcionales

@@ -62,6 +62,18 @@ Ajuste 5,3 % (evento entre 3 y 6 p. m.) → total 486,5
 Exceso sobre el estándar: 22 − 14 = 8 mm
 ```
 
+## Decisiones tomadas al implementar
+
+Como el enunciado original no estaba disponible, se tomaron estas decisiones. Todas están en `js/config.js` y `js/calculo.js` para cambiarlas fácilmente:
+
+| Tema | Decisión |
+| --- | --- |
+| Fórmula | `mm × 14 × horas` (como muestra el mockup). El exceso sobre el estándar se calcula aparte: `mm − 14`. |
+| Ajuste del 5,3 % | Aplica si el aguacero **inicia** desde las 3:00 p. m. y antes de las 6:00 p. m. |
+| Clave de seguridad | `AGUA1` (5 caracteres, sin distinguir mayúsculas). |
+| Reloj de espera | 2,8 segundos. |
+| Zona | Se agregó una lista de zonas (Pance, Siloé, Jamundí, Aguablanca, Granada, Otra zona) para poder agrupar la gráfica. |
+
 ## Supuestos y preguntas abiertas
 
 Este documento se armó a partir del README, el wireframe y el mockup. **No se contó con el enunciado original del caso de estudio**, así que estos puntos deben confirmarse:

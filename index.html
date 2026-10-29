@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Palo de Agua · Registro de lluvias</title>
+<meta name="description" content="Aplicación web para registrar y vigilar la lluvia por zonas en Cali.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Cpath d='M50 2C50 2 6 52 6 80C6 104 26 118 50 118C74 118 94 104 94 80C94 52 50 2 50 2Z' fill='%232AA8E8'/%3E%3Cpath d='M52 108C52 80 70 62 98 58C97 90 80 108 52 108Z' fill='%235CBF3F'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Karla:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<main class="mesa">
+
+  <!-- 1 · Ingreso -->
+  <section id="pantalla-ingreso" class="hoja h1 pantalla activa" aria-label="Ingreso">
+    <div class="cabeza"><img src="img/logo-login.png" alt="Palo de Agua" width="230" height="230"></div>
+    <svg class="lluvia" viewBox="0 0 420 120" aria-hidden="true">
+      <rect x="14" y="14" width="392" height="22" rx="11" fill="#2E7D5B"/>
+      <g fill="#164A33"><rect x="104" y="10" width="6" height="30" rx="3"/><rect x="210" y="10" width="6" height="30" rx="3"/><rect x="316" y="10" width="6" height="30" rx="3"/></g>
+      <g fill="#3FA7C8">
+        <rect x="46" y="50" width="12" height="34" rx="6"/><rect x="84" y="50" width="12" height="62" rx="6"/>
+        <rect x="150" y="50" width="12" height="24" rx="6"/><rect x="182" y="50" width="12" height="48" rx="6"/>
+        <rect x="258" y="50" width="12" height="42" rx="6"/><rect x="290" y="50" width="12" height="28" rx="6"/>
+        <rect x="352" y="50" width="12" height="54" rx="6"/>
+      </g>
+      <rect x="226" y="50" width="12" height="68" rx="6" fill="#F28C28"/>
+    </svg>
+    <form class="acceso" id="form-ingreso" novalidate>
+      <h2>Registro de lluvias</h2>
+      <label for="in-usuario">Usuario</label>
+      <input class="campo" id="in-usuario" name="usuario" type="text" autocomplete="username" autocapitalize="characters" spellcheck="false">
+      <label for="in-clave">Contraseña</label>
+      <input class="campo" id="in-clave" name="clave" type="password" autocomplete="current-password">
+      <p class="error" id="in-error" role="alert" hidden></p>
+      <button class="boton" type="submit">Ingresar</button>
+      <p class="nota">Solo personal autorizado.</p>
+    </form>
+  </section>
+
+  <!-- 2 · Panel principal -->
+  <section id="pantalla-panel" class="hoja h2 pantalla" aria-label="Panel principal">
+    <div class="tope">
+      <img src="img/logo-tope.png" alt="Palo de Agua">
+      <span>Sesión de <b id="usuario-sesion">CVC</b> · <button type="button" class="enlace" id="btn-salir">Salir</button></span>
+    </div>
+    <div class="cuerpo">
+      <form class="boleta" id="form-registro" novalidate>
+        <h2>Registrar aguacero</h2>
+        <label for="r-direccion">Dirección de la zona</label>
+        <input class="campo" id="r-direccion" name="direccion" type="text" placeholder="Ej.: Vía a Pance, km 2" autocomplete="off">
+        <p class="msg" id="m-direccion"></p>
+        <div class="dos">
+          <div><label for="r-zona">Zona</label>
+            <select class="campo" id="r-zona" name="zona"></select><p class="msg" id="m-zona"></p></div>
+          <div><label for="r-registrador">Quién registra</label>
+            <input class="campo" id="r-registrador" name="registradoPor" type="text" placeholder="Ej.: Laura Quintero" autocomplete="off"><p class="msg" id="m-registradoPor"></p></div>
+          <div><label for="r-inicio">Hora de inicio</label>
+            <input class="campo" id="r-inicio" name="horaInicio" type="time"><p class="msg" id="m-horaInicio"></p></div>
+          <div><label for="r-fin">Hora de fin</label>
+            <input class="campo" id="r-fin" name="horaFin" type="time"><p class="msg" id="m-horaFin"></p></div>
+          <div><label for="r-mm">Precipitación (mm)</label>
+            <input class="campo" id="r-mm" name="milimetros" type="number" inputmode="decimal" min="0" step="0.1" placeholder="Ej.: 22"><p class="msg" id="m-milimetros"></p></div>
+        </div>
+        <button class="boton" id="btn-registrar" type="submit">Calcular y registrar</button>
+      </form>
+
+      <div class="resultado">
+        <h2>Resultado</h2>
+        <div class="reloj">
+          <svg id="reloj" width="92" height="92" viewBox="0 0 80 80" role="img" aria-label="Reloj">
+            <circle cx="40" cy="40" r="35" fill="#fff" stroke="#0F2A33" stroke-width="2.5"/>
+            <path id="reloj-tramo" d="" fill="#3FA7C8"/>
+            <g stroke="#0F2A33" stroke-width="2" stroke-linecap="round">
+              <path d="M40 8v5M72 40h-5M40 72v-5M8 40h5"/>
+              <line id="mano-h" x1="40" y1="40" x2="40" y2="24"/>
+              <line id="mano-m" x1="40" y1="40" x2="40" y2="15"/>
+            </g>
+            <circle cx="40" cy="40" r="2.6" fill="#0F2A33"/>
+          </svg>
+          <div>
+            <div class="gran" id="res-mm" aria-live="polite">—<small> mm</small></div>
+            <p class="exceso" id="res-estado">Llena el formulario y pulsa «Calcular y registrar».</p>
+          </div>
+        </div>
+        <p class="cuenta" id="res-cuenta"></p>
+        <div class="foto" id="foto-caja">
+          <i></i><i></i><i></i><i></i>
+          <img id="foto-vista" alt="Foto de la zona" hidden>
+          <button type="button" class="foto-btn" id="btn-foto">Tomar foto de la zona</button>
+          <input type="file" id="foto-input" accept="image/*" capture="environment" hidden>
+        </div>
+      </div>
+
+      <div class="mapa">
+        <h2>Lluvia por zona</h2>
+        <div id="grafica"></div>
+        <p class="nota">Cada registro cuelga del palo. Naranja pasa del estándar de Cali (14 mm); azul no.</p>
+        <div class="acciones">
+          <button type="button" class="boton sec" id="btn-ejemplo">Cargar ejemplo</button>
+          <button type="button" class="boton sec" id="btn-csv">Exportar CSV</button>
+          <button type="button" class="boton sec" id="btn-borrar">Borrar registros</button>
+        </div>
+        <h3 class="subtitulo">Historial</h3>
+        <div class="tabla-wrap"><table id="tabla-historial">
+          <thead><tr><th>Fecha</th><th>Zona</th><th>Horario</th><th>mm</th><th>Total</th><th>Estado</th><th>Foto</th></tr></thead>
+          <tbody></tbody>
+        </table></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · Clave de seguridad -->
+  <section id="pantalla-clave" class="hoja h3 pantalla" aria-label="Clave de seguridad">
+    <div class="sombra"></div>
+    <form class="clave" id="form-clave" novalidate>
+      <h2>Registro guardado</h2>
+      <p style="margin:10px 0 18px">Escribe la clave para registrar otra zona.</p>
+      <div class="casillas" id="casillas" role="group" aria-label="Clave de seguridad"></div>
+      <button class="boton" type="submit">Continuar</button>
+      <p class="nota">Si la clave no coincide, volverás al ingreso.</p>
+      <button type="button" class="enlace" id="btn-volver">Volver al panel</button>
+    </form>
+  </section>
+</main>
+
+<div class="aviso" id="aviso" role="alertdialog" aria-modal="true" aria-labelledby="aviso-titulo" hidden>
+  <div class="aviso-caja">
+    <h2 id="aviso-titulo">Clave incorrecta</h2>
+    <p id="aviso-texto"></p>
+    <button type="button" class="boton" id="aviso-ok">Entendido</button>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/config.js"></script>
+<script src="js/util.js"></script>
+<script src="js/calculo.js"></script>
+<script src="js/almacen.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/registro.js"></script>
+<script src="js/reloj.js"></script>
+<script src="js/clave.js"></script>
+<script src="js/grafica.js"></script>
+<script src="js/foto.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

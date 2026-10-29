@@ -6,7 +6,20 @@ Caso de estudio: monitoreo de lluvia y precipitación (HTML, CSS y JavaScript).
 
 ## Estado
 
-Fase de diseño. Por ahora el repositorio solo contiene el wireframe y el mockup. La aplicación funcional viene después.
+Aplicación **funcionando** (HTML, CSS y JavaScript, sin servidor). Abre `index.html` en el navegador para usarla.
+
+## Cómo usarla
+
+1. Abre `index.html` (doble clic) o la página publicada.
+2. Ingresa con usuario `CVC` y contraseña `Lluvias`.
+3. Llena el formulario y pulsa **Calcular y registrar**. El reloj gira y luego aparece el resultado frente al estándar de 14 mm.
+4. Para registrar otra zona, pulsa **Registrar otra zona** y escribe la clave de seguridad: `AGUA1`.
+5. Si la clave es incorrecta, aparece una alerta y vuelves al ingreso.
+6. Usa **Cargar ejemplo** para ver la gráfica con datos de muestra.
+
+Los registros se guardan en el navegador (`localStorage`), así que siguen ahí al recargar la página.
+
+> Las credenciales y la clave están escritas en `js/config.js`. Es aceptable para un caso de estudio, pero **no es seguro** para un sistema real.
 
 ## Documentación
 
@@ -17,17 +30,19 @@ Fase de diseño. Por ahora el repositorio solo contiene el wireframe y el mockup
 | [Historias de usuario](docs/03-historias-de-usuario.md) | 14 historias con criterios de aceptación, agrupadas en 5 épicas |
 | [Backlog](docs/04-backlog.md) | Backlog priorizado, plan de sprints, definición de "Hecho" y riesgos |
 
-## Contenido
+## Estructura
 
-| Archivo | Qué es |
-| --- | --- |
-| `logo.png`, `logo-vertical.png`, `logo-horizontal.png` | Logo: gota con hoja. El original y dos recortes con fondo transparente |
-| `wireframe.html` | Boceto a mano en hoja cuadriculada: ingreso, panel y clave, con los requerimientos anotados |
-| `mockup.html` | Alta fidelidad estilo libreta de campo sobre papel milimetrado, con datos de ejemplo |
+```
+index.html          Aplicación (3 pantallas: ingreso, panel y clave)
+css/estilos.css     Estilos
+js/                 config, util, calculo, almacen, auth, registro, reloj, clave, grafica, foto y app
+img/                Logo: original, vertical, horizontal y versiones para la web
+diseno/             wireframe.html (boceto a mano) y mockup.html (alta fidelidad)
+docs/               Contexto, componentes, historias de usuario y backlog
+tests/              Prueba del cálculo (node tests/calculo.test.js)
+```
 
-Para verlos, abre los archivos `.html` en el navegador.
-
-## Qué cubre el diseño
+## Qué cubre la aplicación
 
 1. Ingreso con usuario y contraseña.
 2. Registro de zona, horas y milímetros, con cálculo frente al estándar de Cali (14 mm) y reloj de espera.
