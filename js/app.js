@@ -258,6 +258,14 @@
       $('m-registradoPor').textContent = malo ? PA.registro.mensajeNombre(v) : '';
       $('r-registrador').setAttribute('aria-invalid', malo ? 'true' : 'false');
     });
+    $('r-mm').addEventListener('input', function () {
+      var v = $('r-mm').value, m = v.trim() === '' ? '' : PA.registro.mensajeMm(v);
+      $('m-milimetros').textContent = m; $('r-mm').setAttribute('aria-invalid', m ? 'true' : 'false');
+    });
+    $('r-direccion').addEventListener('input', function () {
+      var v = $('r-direccion').value, m = v.trim().length < 3 ? '' : PA.registro.mensajeDireccion(v);
+      $('m-direccion').textContent = m; $('r-direccion').setAttribute('aria-invalid', m ? 'true' : 'false');
+    });
     $('btn-salir').addEventListener('click', salir);
     $('btn-volver').addEventListener('click', function () { mostrar('pantalla-panel'); });
     $('btn-ejemplo').addEventListener('click', cargarEjemplo);

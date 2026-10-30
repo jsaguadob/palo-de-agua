@@ -12,7 +12,7 @@ Permite seguir cada requisito desde su origen hasta su prueba. Si cambia un requ
 | RF-02 | NEC-01 | — | HU-01 | CU-01 | `app.js` | CP-ING-02, CP-ING-03 | Verificado |
 | RF-03 | NEC-01 | — | HU-09 | CU-08 | `auth.js`, `app.js` | CP-SES-01 | Verificado |
 | RF-04 | NEC-02 | Req 2 | HU-02 | CU-02 | `index.html`, `app.js` | CP-HOR-01 a CP-HOR-04, CP-REG-05 a CP-REG-12 (indirecta) | Verificado |
-| RF-05 | NEC-02 | — | HU-10 | CU-02 | `registro.js` | CP-REG-01, CP-REG-02, CP-REG-03, CP-HOR-05, CP-VAL-01 a CP-VAL-09 | Verificado |
+| RF-05 | NEC-02 | — | HU-10 | CU-02 | `registro.js` | CP-REG-01, CP-REG-02, CP-REG-03, CP-HOR-05, CP-VAL-01 a CP-VAL-16 | Verificado |
 | RF-06 | NEC-03 | Req 2 | HU-03 | CU-02 | `calculo.js` | CP-CAL-03, CP-CAL-05, CP-REG-05, CP-REG-06, CP-REG-12 | Verificado |
 | RF-07 | NEC-03 | Req 2 | HU-03 | CU-02 | `calculo.js` | CP-CAL-01, CP-REG-07 | Verificado |
 | RF-08 | NEC-04 | Req 4 | HU-05 | CU-02 | `calculo.js` | CP-CAL-02, CP-CAL-04, CP-CAL-06, CP-CAL-07 | Verificado |

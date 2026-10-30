@@ -70,7 +70,7 @@ const t = (id, rf, desc, ok, extra) => {
   set('r-direccion', 'Vía a Pance, km 2'); set('r-zona', 'Pance'); set('r-registrador', 'Laura Quintero');
   hora('horaInicio', '17:00'); hora('horaFin', '16:00'); set('r-mm', '-3'); submit($('form-registro'));
   t('CP-REG-02', 'RF-05', 'Hora de fin anterior a la de inicio: error', /después/.test($('m-horaFin').textContent), $('m-horaFin').textContent);
-  t('CP-REG-03', 'RF-05', 'Milímetros negativos: error', /mayores que 0/.test($('m-milimetros').textContent), $('m-milimetros').textContent);
+  t('CP-REG-03', 'RF-05', 'Milímetros negativos: error («no puede ser negativa»)', /negativa/.test($('m-milimetros').textContent), $('m-milimetros').textContent);
 
   // Validación de nombre y dirección
   const V = (o) => PA.registro.validar(Object.assign({ direccion: 'Vía a Pance, km 2', zona: 'Pance', registradoPor: 'Laura Quintero', horaInicio: '10:00', horaFin: '11:00', milimetros: '10' }, o));
@@ -81,6 +81,20 @@ const t = (id, rf, desc, ok, extra) => {
   t('CP-VAL-05', 'RF-05', 'Una dirección solo con números o símbolos se rechaza', !V({ direccion: '12345' }).ok && !V({ direccion: '###' }).ok && !V({ direccion: '<script>alert(1)</script>' }).ok);
   t('CP-VAL-06', 'RF-05', 'Direcciones normales («Cra. 28D # 72-15», «Calle 14, Jamundí») se aceptan', ['Cra. 28D # 72-15', 'Calle 14, Jamundí', 'Av. 9N con calle 17', 'Vía a Pance, km 2'].every((x) => V({ direccion: x }).ok));
   t('CP-VAL-07', 'RF-05', 'Un nombre de solo espacios se rechaza', !V({ registradoPor: '     ' }).ok);
+  const malosMm = ['-3', '-0.5', '−4', '0', '0,0', 'abc', '22abc', '1e3', '1E2', '0x10', '--5', '+5', 'Infinity', 'NaN', '501', '500.01', '22.555', '22,5555', ' ', '', '1,2,3', '2 2'];
+  t('CP-VAL-10', 'RF-05', 'Precipitaciones raras se rechazan: negativas, cero, letras, 1e3, 0x10, Infinity, más de 500 o con 3 decimales', malosMm.every((x) => !V({ milimetros: x }).ok), malosMm.filter((x) => V({ milimetros: x }).ok).join(' | '));
+  const buenosMm = ['0.5', '0,5', '22', '22,5', '22.5', '22.55', '500', '0,01', ' 22 '];
+  t('CP-VAL-11', 'RF-05', 'Precipitaciones válidas se aceptan: 0,5 · 22 · 22,5 · 22.55 · 500 (con coma o punto)', buenosMm.every((x) => V({ milimetros: x }).ok), buenosMm.filter((x) => !V({ milimetros: x }).ok).join(' | '));
+  t('CP-VAL-12', 'RF-05', 'La coma decimal se interpreta bien (22,5 → 22.5)', V({ milimetros: '22,5' }).datos.milimetros === 22.5);
+  const malasDir = ['<script>alert(1)</script>', "'; DROP TABLE registros;--", 'Calle 5 😀', '{{7*7}}', 'ftp://x.com', '=cmd|calc', 'a@b.com', '   ', '12345', '###', '\u0000\u0001abc', 'a', '||||', 'x'.repeat(101), '<img src=x onerror=alert(1)>', '$(rm -rf /)', 'Calle 5 % 6', 'Calle 5 * 6'];
+  t('CP-VAL-13', 'RF-05', 'Direcciones raras se rechazan: etiquetas HTML, comillas con ;, emojis, {{ }}, =, @, solo números o símbolos, muy largas', malasDir.every((x) => !V({ direccion: x }).ok), malasDir.filter((x) => V({ direccion: x }).ok).join(' | '));
+  t('CP-VAL-14', 'RF-05', 'Los espacios repetidos se limpian al guardar («Cra.   52   con  calle 1» → «Cra. 52 con calle 1»)', V({ direccion: 'Cra.   52   con  calle 1', registradoPor: '  Laura    Quintero ' }).datos.direccion === 'Cra. 52 con calle 1' && V({ registradoPor: '  Laura    Quintero ' }).datos.registradoPor === 'Laura Quintero');
+  set('r-mm', '-3'); $('r-mm').dispatchEvent(new w.Event('input'));
+  t('CP-VAL-15', 'RF-05', 'Mientras se escribe, una precipitación negativa muestra el aviso al instante', /negativa/.test($('m-milimetros').textContent), $('m-milimetros').textContent);
+  set('r-mm', ''); $('r-mm').dispatchEvent(new w.Event('input'));
+  set('r-direccion', '<b>x</b>'); $('r-direccion').dispatchEvent(new w.Event('input'));
+  t('CP-VAL-16', 'RF-05', 'Mientras se escribe, una dirección rara muestra el aviso al instante', /no permitidos/.test($('m-direccion').textContent), $('m-direccion').textContent);
+  set('r-direccion', 'Vía a Pance, km 2'); $('r-direccion').dispatchEvent(new w.Event('input'));
   t('CP-CSV-02', 'RF-17', 'En el CSV, un texto que empieza con «=» se neutraliza para que Excel no lo tome como fórmula', PA.util.csvSeguro('=1+1') === "'=1+1" && PA.util.csvSeguro('@x') === "'@x" && PA.util.csvSeguro('Pance') === 'Pance');
   set('r-registrador', 'Laura 123'); $('r-registrador').dispatchEvent(new w.Event('input'));
   t('CP-VAL-08', 'RF-05', 'Mientras se escribe, un número en el nombre muestra el aviso al instante', /letras/.test($('m-registradoPor').textContent), $('m-registradoPor').textContent);

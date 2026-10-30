@@ -94,7 +94,7 @@ Ingreso · Registro de aguacero · Cálculo frente al estándar y ajuste · Relo
 | ID | El sistema deberá… | Prior. | Origen | Verif. |
 | --- | --- | --- | --- | --- |
 | RF-04 | Pedir dirección, zona, quién registra y precipitación en mm, y permitir **elegir** (sin escribir) la hora de inicio y la de fin en tres listas: hora (1 a 12), minutos (de 5 en 5) y a. m./p. m. | M | Caso · Req 2 | T |
-| RF-05 | Validar los datos antes de guardar: campos obligatorios; el nombre de quien registra solo con letras (sin números ni símbolos, de 2 a 60 caracteres) y con aviso mientras se escribe; la dirección de 3 a 100 caracteres, con al menos una letra y sin símbolos especiales; hora de fin posterior a la de inicio; mm mayores que 0 y no más de 500. | M | Equipo | T |
+| RF-05 | Validar los datos antes de guardar: campos obligatorios; el nombre de quien registra solo con letras (sin números ni símbolos, de 2 a 60 caracteres) y con aviso mientras se escribe; la dirección de 3 a 100 caracteres, con al menos una letra y sin símbolos especiales; hora de fin posterior a la de inicio; precipitación como número positivo (coma o punto), de 0,01 a 500 mm y con máximo 2 decimales, rechazando negativos, letras, notación científica (`1e3`) y hexadecimal (`0x10`); los espacios repetidos se limpian al guardar. | M | Equipo | T |
 | RF-06 | Comparar los mm con el estándar de 14 mm e indicar por cuánto lo pasa (o que no lo pasa). | M | Caso · Req 2 | T |
 | RF-07 | Mostrar la cuenta `mm × 14 × horas = base`. | M | Caso · Req 2 | T |
 | RF-08 | Sumar el 5,3 % a la base si el aguacero inicia desde las 3:00 p. m. y antes de las 6:00 p. m. | M | Caso · Req 4 | T |
@@ -159,7 +159,7 @@ Entidad **Registro** (se guarda como JSON en `localStorage`, clave `palo-de-agua
 | `zona` | texto | Una de la lista de zonas. |
 | `direccion` | texto | De 3 a 100 caracteres; letras, números y `. , # ° ' / ( ) -`; al menos una letra. |
 | `horaInicio`, `horaFin` | texto `HH:MM` | Fin posterior a inicio. |
-| `milimetros` | número | Mayor que 0 y hasta 500. |
+| `milimetros` | número | De 0,01 a 500; máximo 2 decimales; se acepta coma o punto al escribirlo. |
 | `registradoPor` | texto | De 2 a 60 caracteres; solo letras (con tildes, ñ y ü), espacios, punto, apóstrofo y guion. Sin números ni símbolos. |
 | `pasaEstandar` | booleano | `milimetros > 14`. |
 | `excesoMm` | número | `max(0, milimetros − 14)`. |

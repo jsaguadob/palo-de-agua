@@ -36,7 +36,7 @@ Los registros se guardan en el navegador (`localStorage`), así que siguen ahí 
 | [Especificación de requisitos (ERS)](docs/06-especificacion-de-requisitos.md) | 20 requisitos funcionales, 11 no funcionales, reglas del negocio y modelo de datos |
 | [Casos de uso](docs/07-casos-de-uso.md) | 8 casos de uso con diagrama, flujos y estados de la interfaz |
 | [Matriz de trazabilidad](docs/08-matriz-de-trazabilidad.md) | Necesidad → requisito → historia → caso de uso → módulo → prueba |
-| [Plan de pruebas](docs/09-plan-de-pruebas.md) | Estrategia, 65 pruebas automáticas con resultado y pruebas manuales |
+| [Plan de pruebas](docs/09-plan-de-pruebas.md) | Estrategia, 72 pruebas automáticas con resultado y pruebas manuales |
 | [Arquitectura y diseño](docs/10-arquitectura-y-diseno.md) | Módulos, secuencia, modelo de datos y decisiones de diseño |
 
 ## Estructura

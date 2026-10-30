@@ -18,7 +18,7 @@ npm test
 ## 9.2 Resultado de la última ejecución
 
 - **Fecha:** 29/10/2026.
-- **Automáticas:** 65 de 65 pruebas de punta a punta pasaron, más las pruebas unitarias del cálculo.
+- **Automáticas:** 72 de 72 pruebas de punta a punta pasaron, más las pruebas unitarias del cálculo.
 - **Fallas:** 0.
 
 ## 9.3 Pruebas automáticas
@@ -43,7 +43,7 @@ npm test
 | CP-HOR-05 | RF-05 | Sin elegir la hora, el valor queda vacío (y se pedirá) | Pasó |
 | CP-REG-01 | RF-05 | Formulario vacío: muestra los 6 errores | Pasó |
 | CP-REG-02 | RF-05 | Hora de fin anterior a la de inicio: error | Pasó |
-| CP-REG-03 | RF-05 | Milímetros negativos: error | Pasó |
+| CP-REG-03 | RF-05 | Milímetros negativos: error («no puede ser negativa») | Pasó |
 | CP-VAL-01 | RF-05 | Un nombre con números («Laura2», «123») se rechaza | Pasó |
 | CP-VAL-02 | RF-05 | Un nombre con símbolos («Laura@#», «<b>x</b>») se rechaza | Pasó |
 | CP-VAL-03 | RF-05 | Nombres reales con tildes, ñ, apóstrofo, guion y punto se aceptan | Pasó |
@@ -51,6 +51,13 @@ npm test
 | CP-VAL-05 | RF-05 | Una dirección solo con números o símbolos se rechaza | Pasó |
 | CP-VAL-06 | RF-05 | Direcciones normales («Cra. 28D # 72-15», «Calle 14, Jamundí») se aceptan | Pasó |
 | CP-VAL-07 | RF-05 | Un nombre de solo espacios se rechaza | Pasó |
+| CP-VAL-10 | RF-05 | Precipitaciones raras se rechazan: negativas, cero, letras, 1e3, 0x10, Infinity, más de 500 o con 3 decimales | Pasó |
+| CP-VAL-11 | RF-05 | Precipitaciones válidas se aceptan: 0,5 · 22 · 22,5 · 22.55 · 500 (con coma o punto) | Pasó |
+| CP-VAL-12 | RF-05 | La coma decimal se interpreta bien (22,5 → 22.5) | Pasó |
+| CP-VAL-13 | RF-05 | Direcciones raras se rechazan: etiquetas HTML, comillas con ;, emojis, {{ }}, =, @, solo números o símbolos, muy largas | Pasó |
+| CP-VAL-14 | RF-05 | Los espacios repetidos se limpian al guardar («Cra.   52   con  calle 1» → «Cra. 52 con calle 1») | Pasó |
+| CP-VAL-15 | RF-05 | Mientras se escribe, una precipitación negativa muestra el aviso al instante | Pasó |
+| CP-VAL-16 | RF-05 | Mientras se escribe, una dirección rara muestra el aviso al instante | Pasó |
 | CP-CSV-02 | RF-17 | En el CSV, un texto que empieza con «=» se neutraliza para que Excel no lo tome como fórmula | Pasó |
 | CP-VAL-08 | RF-05 | Mientras se escribe, un número en el nombre muestra el aviso al instante | Pasó |
 | CP-VAL-09 | RF-05 | Al corregir el nombre, el aviso desaparece | Pasó |
