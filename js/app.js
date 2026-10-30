@@ -44,6 +44,29 @@
     err.hidden = true; PA.auth.abrir(u); entrar();
   }
 
+  /* ---------- Horas: se eligen en listas (hora, minutos y a. m./p. m.) ---------- */
+  var HORAS = { horaInicio: 'r-inicio', horaFin: 'r-fin' };
+  function opcion(valor, texto) { return U.el('option', { value: valor }, texto); }
+  function armarHora(campo) {
+    var grupo = $('g-' + campo), oculto = $(HORAS[campo]), nombre = campo === 'horaInicio' ? 'inicio' : 'fin';
+    var hh = U.el('select', { 'class': 'campo', 'aria-label': 'Hora de ' + nombre + ': hora' });
+    var mm = U.el('select', { 'class': 'campo', 'aria-label': 'Hora de ' + nombre + ': minutos' });
+    var pp = U.el('select', { 'class': 'campo', 'aria-label': 'Hora de ' + nombre + ': a. m. o p. m.' });
+    hh.appendChild(opcion('', '--'));
+    for (var h = 1; h <= 12; h++) hh.appendChild(opcion(String(h), String(h)));
+    for (var m = 0; m < 60; m += 5) mm.appendChild(opcion(('0' + m).slice(-2), ('0' + m).slice(-2)));
+    pp.appendChild(opcion('AM', 'a. m.')); pp.appendChild(opcion('PM', 'p. m.'));
+    function sincronizar() {
+      if (!hh.value) { oculto.value = ''; return; }
+      var h24 = (+hh.value % 12) + (pp.value === 'PM' ? 12 : 0);
+      oculto.value = ('0' + h24).slice(-2) + ':' + mm.value;
+    }
+    [hh, mm, pp].forEach(function (s) { s.addEventListener('change', sincronizar); grupo.appendChild(s); });
+    grupo._selects = [hh, mm, pp];
+    grupo._reiniciar = function () { hh.value = ''; mm.value = '00'; pp.value = 'AM'; oculto.value = ''; };
+  }
+  function elementoCampo(n) { return HORAS[n] ? $('g-' + n)._selects[0] : $('form-registro').elements[n]; }
+
   /* ---------- Formulario de registro (Req 2) ---------- */
   function leerForm() {
     var f = $('form-registro'), d = {};
@@ -52,11 +75,11 @@
   }
   function mostrarErrores(errores) {
     CAMPOS.forEach(function (n) {
-      var campo = $('form-registro').elements[n];
       $('m-' + n).textContent = errores[n] || '';
-      campo.setAttribute('aria-invalid', errores[n] ? 'true' : 'false');
+      var els = HORAS[n] ? $('g-' + n)._selects : [$('form-registro').elements[n]];
+      els.forEach(function (e) { e.setAttribute('aria-invalid', errores[n] ? 'true' : 'false'); });
     });
-    for (var i = 0; i < CAMPOS.length; i++) if (errores[CAMPOS[i]]) { $('form-registro').elements[CAMPOS[i]].focus(); break; }
+    for (var i = 0; i < CAMPOS.length; i++) if (errores[CAMPOS[i]]) { elementoCampo(CAMPOS[i]).focus(); break; }
   }
   function bloquear(si) {
     Array.prototype.forEach.call($('form-registro').querySelectorAll('input,select'), function (e) { e.disabled = si; });
@@ -64,6 +87,7 @@
   }
   function limpiarForm() {
     $('form-registro').reset();
+    Object.keys(HORAS).forEach(function (n) { $('g-' + n)._reiniciar(); });
     mostrarErrores({});
     bloquear(false);
     estado.guardado = false; estado.ultimoId = null; estado.fotoPendiente = null;
@@ -217,6 +241,7 @@
     var sel = $('r-zona');
     sel.appendChild(U.el('option', { value: '' }, 'Elige la zona'));
     C.ZONAS.forEach(function (z) { sel.appendChild(U.el('option', { value: z }, z)); });
+    Object.keys(HORAS).forEach(armarHora);
     PA.clave.init($('casillas'));
     PA.reloj.reposo();
     PA.foto.init($('foto-input'), $('btn-foto'), alTenerFoto, toast);

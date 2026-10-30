@@ -12,7 +12,7 @@ Aplicación **funcionando** (HTML, CSS y JavaScript, sin servidor). Abre `index.
 
 1. Abre `index.html` (doble clic) o la página publicada.
 2. Ingresa con usuario `CVC` y contraseña `Lluvias`.
-3. Llena el formulario y pulsa **Calcular y registrar**. El reloj gira y luego aparece el resultado frente al estándar de 14 mm.
+3. Llena el formulario (las horas se eligen en listas, no se escriben) y pulsa **Calcular y registrar**. El reloj gira y luego aparece el resultado frente al estándar de 14 mm.
 4. Para registrar otra zona, pulsa **Registrar otra zona** y escribe la clave de seguridad: `AGUA1`.
 5. Si la clave es incorrecta, aparece una alerta y vuelves al ingreso.
 6. Usa **Cargar ejemplo** para ver la gráfica con datos de muestra.
@@ -33,7 +33,7 @@ Los registros se guardan en el navegador (`localStorage`), así que siguen ahí 
 | [Especificación de requisitos (ERS)](docs/06-especificacion-de-requisitos.md) | 18 requisitos funcionales, 11 no funcionales, reglas del negocio y modelo de datos |
 | [Casos de uso](docs/07-casos-de-uso.md) | 8 casos de uso con diagrama, flujos y estados de la interfaz |
 | [Matriz de trazabilidad](docs/08-matriz-de-trazabilidad.md) | Necesidad → requisito → historia → caso de uso → módulo → prueba |
-| [Plan de pruebas](docs/09-plan-de-pruebas.md) | Estrategia, 37 pruebas automáticas con resultado y pruebas manuales |
+| [Plan de pruebas](docs/09-plan-de-pruebas.md) | Estrategia, 43 pruebas automáticas con resultado y pruebas manuales |
 | [Arquitectura y diseño](docs/10-arquitectura-y-diseno.md) | Módulos, secuencia, modelo de datos y decisiones de diseño |
 
 ## Estructura

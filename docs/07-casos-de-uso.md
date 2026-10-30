@@ -69,7 +69,7 @@ flowchart LR
 | **Postcondición** | El registro queda guardado, con resultado visible y barra nueva en la gráfica. El formulario queda bloqueado. |
 
 **Flujo principal**
-1. El registrador llena dirección, zona, quién registra, horas y milímetros.
+1. El registrador llena dirección, zona, quién registra y milímetros, y elige las horas de inicio y de fin en las listas (hora, minutos y a. m./p. m.).
 2. Pulsa *Calcular y registrar*.
 3. El sistema valida los datos.
 4. El sistema muestra el reloj girando durante 2,8 s.

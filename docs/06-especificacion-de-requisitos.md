@@ -92,7 +92,7 @@ Ingreso · Registro de aguacero · Cálculo frente al estándar y ajuste · Relo
 
 | ID | El sistema deberá… | Prior. | Origen | Verif. |
 | --- | --- | --- | --- | --- |
-| RF-04 | Pedir dirección, zona, quién registra, hora de inicio, hora de fin y precipitación en mm. | M | Caso · Req 2 | T |
+| RF-04 | Pedir dirección, zona, quién registra y precipitación en mm, y permitir **elegir** (sin escribir) la hora de inicio y la de fin en tres listas: hora (1 a 12), minutos (de 5 en 5) y a. m./p. m. | M | Caso · Req 2 | T |
 | RF-05 | Validar los datos: campos obligatorios, hora de fin posterior a la de inicio, mm mayores que 0 y no más de 500. | M | Equipo | T |
 | RF-06 | Comparar los mm con el estándar de 14 mm e indicar por cuánto lo pasa (o que no lo pasa). | M | Caso · Req 2 | T |
 | RF-07 | Mostrar la cuenta `mm × 14 × horas = base`. | M | Caso · Req 2 | T |

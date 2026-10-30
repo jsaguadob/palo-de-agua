@@ -57,10 +57,12 @@
             <select class="campo" id="r-zona" name="zona"></select><p class="msg" id="m-zona"></p></div>
           <div><label for="r-registrador">Quién registra</label>
             <input class="campo" id="r-registrador" name="registradoPor" type="text" placeholder="Ej.: Laura Quintero" autocomplete="off"><p class="msg" id="m-registradoPor"></p></div>
-          <div><label for="r-inicio">Hora de inicio</label>
-            <input class="campo" id="r-inicio" name="horaInicio" type="time"><p class="msg" id="m-horaInicio"></p></div>
-          <div><label for="r-fin">Hora de fin</label>
-            <input class="campo" id="r-fin" name="horaFin" type="time"><p class="msg" id="m-horaFin"></p></div>
+          <div><label id="l-inicio">Hora de inicio</label>
+            <div class="hora" id="g-horaInicio" role="group" aria-labelledby="l-inicio"></div>
+            <input type="hidden" id="r-inicio" name="horaInicio"><p class="msg" id="m-horaInicio"></p></div>
+          <div><label id="l-fin">Hora de fin</label>
+            <div class="hora" id="g-horaFin" role="group" aria-labelledby="l-fin"></div>
+            <input type="hidden" id="r-fin" name="horaFin"><p class="msg" id="m-horaFin"></p></div>
           <div><label for="r-mm">Precipitación (mm)</label>
             <input class="campo" id="r-mm" name="milimetros" type="number" inputmode="decimal" min="0" step="0.1" placeholder="Ej.: 22"><p class="msg" id="m-milimetros"></p></div>
         </div>

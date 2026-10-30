@@ -47,6 +47,7 @@
 
 - **Dado** que estoy en el panel, **cuando** lleno todos los campos y pulso *Calcular y registrar*, **entonces** el registro se guarda y se muestra su resultado.
 - **Dado** que falta algún campo, **cuando** pulso *Calcular y registrar*, **entonces** no se guarda y se indica qué falta.
+- **Dado** que debo indicar la hora, **cuando** abro la hora de inicio o de fin, **entonces** la elijo en listas (hora, minutos de 5 en 5 y a. m./p. m.) y no tengo que escribirla.
 
 ### HU-03 · Comparar con el estándar de Cali (Req 2)
 **Como** registrador, **quiero** ver si la lluvia pasó el estándar de 14 mm **para** saber si la zona está en alerta.

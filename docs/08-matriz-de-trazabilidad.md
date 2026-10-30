@@ -11,8 +11,8 @@ Permite seguir cada requisito desde su origen hasta su prueba. Si cambia un requ
 | RF-01 | NEC-01 | Req 1 | HU-01 | CU-01 | `auth.js`, `app.js` | CP-ING-01, CP-ING-04 | Verificado |
 | RF-02 | NEC-01 | — | HU-01 | CU-01 | `app.js` | CP-ING-02, CP-ING-03 | Verificado |
 | RF-03 | NEC-01 | — | HU-09 | CU-08 | `auth.js`, `app.js` | CP-SES-01 | Verificado |
-| RF-04 | NEC-02 | Req 2 | HU-02 | CU-02 | `index.html`, `app.js` | CP-REG-05 a CP-REG-12 (indirecta) | Verificado |
-| RF-05 | NEC-02 | — | HU-10 | CU-02 | `registro.js` | CP-REG-01, CP-REG-02, CP-REG-03 | Verificado |
+| RF-04 | NEC-02 | Req 2 | HU-02 | CU-02 | `index.html`, `app.js` | CP-HOR-01 a CP-HOR-04, CP-REG-05 a CP-REG-12 (indirecta) | Verificado |
+| RF-05 | NEC-02 | — | HU-10 | CU-02 | `registro.js` | CP-REG-01, CP-REG-02, CP-REG-03, CP-HOR-05 | Verificado |
 | RF-06 | NEC-03 | Req 2 | HU-03 | CU-02 | `calculo.js` | CP-CAL-03, CP-CAL-05, CP-REG-05, CP-REG-06, CP-REG-12 | Verificado |
 | RF-07 | NEC-03 | Req 2 | HU-03 | CU-02 | `calculo.js` | CP-CAL-01, CP-REG-07 | Verificado |
 | RF-08 | NEC-04 | Req 4 | HU-05 | CU-02 | `calculo.js` | CP-CAL-02, CP-CAL-04, CP-CAL-06, CP-CAL-07 | Verificado |
@@ -20,7 +20,7 @@ Permite seguir cada requisito desde su origen hasta su prueba. Si cambia un requ
 | RF-10 | NEC-05 | — | HU-04 | CU-02 | `reloj.js` | CP-REG-08 | Verificado |
 | RF-11 | NEC-02 | — | HU-11 | CU-02 | `almacen.js` | CP-REG-09, CP-REG-11 | Verificado |
 | RF-12 | NEC-06 | Req 3 | HU-06 | CU-03 | `app.js` | CP-REG-10, CP-CLA-01 | Verificado |
-| RF-13 | NEC-06 | Req 3 | HU-06 | CU-03 | `clave.js`, `app.js` | CP-CLA-02 a CP-CLA-05 | Verificado |
+| RF-13 | NEC-06 | Req 3 | HU-06 | CU-03 | `clave.js`, `app.js` | CP-CLA-02 a CP-CLA-05, CP-HOR-06 | Verificado |
 | RF-14 | NEC-07 | Req 5 | HU-07 | CU-04 | `grafica.js` | CP-GRA-01 a CP-GRA-04 | Verificado |
 | RF-15 | NEC-08 | Req 5 | HU-08 | CU-05 | `foto.js`, `app.js` | CP-FOT-01 a CP-FOT-03 (manuales) | Implementado |
 | RF-16 | NEC-09 | — | HU-13 | CU-04 | `app.js` | CP-HIS-01 | Verificado |

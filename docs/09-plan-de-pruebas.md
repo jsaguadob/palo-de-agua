@@ -18,7 +18,7 @@ npm test
 ## 9.2 Resultado de la última ejecución
 
 - **Fecha:** 29/10/2026.
-- **Automáticas:** 37 de 37 pruebas de punta a punta pasaron, más las pruebas unitarias del cálculo.
+- **Automáticas:** 43 de 43 pruebas de punta a punta pasaron, más las pruebas unitarias del cálculo.
 - **Fallas:** 0.
 
 ## 9.3 Pruebas automáticas
@@ -36,6 +36,11 @@ npm test
 | CP-ING-02 | RF-02 | Campos vacíos muestran un error | Pasó |
 | CP-ING-03 | RF-02 | Contraseña incorrecta: error y sigue en el ingreso | Pasó |
 | CP-ING-04 | RF-01 | CVC / Lluvias entra al panel (usuario sin distinguir mayúsculas) | Pasó |
+| CP-HOR-01 | RF-04 | La hora se elige en 3 listas: hora (1 a 12), minutos (de 5 en 5) y a. m./p. m. | Pasó |
+| CP-HOR-02 | RF-04 | Elegir 3:40 p. m. guarda la hora 15:40 | Pasó |
+| CP-HOR-03 | RF-04 | 12:00 a. m. equivale a 00:00 | Pasó |
+| CP-HOR-04 | RF-04 | 12:00 p. m. equivale a 12:00 | Pasó |
+| CP-HOR-05 | RF-05 | Sin elegir la hora, el valor queda vacío (y se pedirá) | Pasó |
 | CP-REG-01 | RF-05 | Formulario vacío: muestra los 6 errores | Pasó |
 | CP-REG-02 | RF-05 | Hora de fin anterior a la de inicio: error | Pasó |
 | CP-REG-03 | RF-05 | Milímetros negativos: error | Pasó |
@@ -54,6 +59,7 @@ npm test
 | CP-CLA-04 | RF-13 | Tras la alerta vuelve al ingreso y cierra la sesión | Pasó |
 | CP-REG-11 | RF-11 | Los registros siguen ahí al volver a entrar | Pasó |
 | CP-CLA-05 | RF-13 | Clave correcta (AGUA1): vuelve al panel con los campos limpios | Pasó |
+| CP-HOR-06 | RF-13 | Al limpiar el formulario las listas de hora vuelven a «--» | Pasó |
 | CP-REG-12 | RF-06 | Registro de 9 mm de mañana: no pasa el estándar y no lleva ajuste | Pasó |
 | CP-GRA-02 | RF-14 | La gráfica muestra una barra azul para la zona que no pasa | Pasó |
 | CP-DAT-01 | RF-18 | «Cargar ejemplo» agrega 5 registros (total 7) | Pasó |
