@@ -225,7 +225,7 @@
     var q = function (v) { return '"' + String(v).replace(/"/g, '""') + '"'; };
     var filas = [['fecha', 'zona', 'direccion', 'hora_inicio', 'hora_fin', 'milimetros', 'registrado_por', 'pasa_estandar', 'exceso_mm', 'ajuste_5_3', 'total']];
     regs.forEach(function (r) {
-      filas.push([U.fecha(r.fecha), r.zona, r.direccion, r.horaInicio, r.horaFin, U.num(r.milimetros), r.registradoPor,
+      filas.push([U.fecha(r.fecha), U.csvSeguro(r.zona), U.csvSeguro(r.direccion), r.horaInicio, r.horaFin, U.num(r.milimetros), U.csvSeguro(r.registradoPor),
         r.pasaEstandar ? 'Sí' : 'No', U.num(r.excesoMm), r.ajusteAplicado ? 'Sí' : 'No', U.num(r.total)]);
     });
     var texto = '\ufeff' + filas.map(function (f) { return f.map(q).join(';'); }).join('\r\n');
@@ -252,6 +252,12 @@
     $('form-ingreso').addEventListener('submit', enviarIngreso);
     $('form-registro').addEventListener('submit', enviarRegistro);
     $('form-clave').addEventListener('submit', enviarClave);
+    // Aviso inmediato mientras se escribe el nombre (no se borra nada: solo se avisa)
+    $('r-registrador').addEventListener('input', function () {
+      var v = $('r-registrador').value, malo = v.trim() !== '' && /[^\p{L} .'’-]/u.test(v);
+      $('m-registradoPor').textContent = malo ? PA.registro.mensajeNombre(v) : '';
+      $('r-registrador').setAttribute('aria-invalid', malo ? 'true' : 'false');
+    });
     $('btn-salir').addEventListener('click', salir);
     $('btn-volver').addEventListener('click', function () { mostrar('pantalla-panel'); });
     $('btn-ejemplo').addEventListener('click', cargarEjemplo);

@@ -74,6 +74,9 @@
 
 - **Dado** una hora de fin anterior a la de inicio, **cuando** pulso *Calcular y registrar*, **entonces** se muestra un error.
 - **Dado** unos milímetros negativos o no numéricos, **cuando** pulso *Calcular y registrar*, **entonces** se muestra un error.
+- **Dado** que escribo números o símbolos en «Quién registra» (por ejemplo «Laura2» o «Laura@#»), **cuando** escribo o pulso *Calcular y registrar*, **entonces** se me avisa que solo se permiten letras y no se guarda.
+- **Dado** un nombre con tildes, ñ, apóstrofo, guion o punto (por ejemplo «María Núñez» o «Dan O'Brien»), **cuando** pulso *Calcular y registrar*, **entonces** se acepta.
+- **Dado** una dirección solo con números o símbolos (por ejemplo «12345»), **cuando** pulso *Calcular y registrar*, **entonces** se me pide una dirección con al menos una letra.
 
 ---
 
@@ -126,3 +129,4 @@
 **Como** supervisor, **quiero** descargar los registros en un archivo **para** usarlos en un informe.
 
 - **Dado** que hay registros, **cuando** pulso *Exportar*, **entonces** se descarga un archivo CSV con todos los registros.
+- **Dado** un texto que empieza con `=`, `+`, `-` o `@`, **cuando** se exporta, **entonces** se neutraliza para que Excel no lo ejecute como fórmula.

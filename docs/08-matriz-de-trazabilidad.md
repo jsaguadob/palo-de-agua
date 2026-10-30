@@ -12,7 +12,7 @@ Permite seguir cada requisito desde su origen hasta su prueba. Si cambia un requ
 | RF-02 | NEC-01 | — | HU-01 | CU-01 | `app.js` | CP-ING-02, CP-ING-03 | Verificado |
 | RF-03 | NEC-01 | — | HU-09 | CU-08 | `auth.js`, `app.js` | CP-SES-01 | Verificado |
 | RF-04 | NEC-02 | Req 2 | HU-02 | CU-02 | `index.html`, `app.js` | CP-HOR-01 a CP-HOR-04, CP-REG-05 a CP-REG-12 (indirecta) | Verificado |
-| RF-05 | NEC-02 | — | HU-10 | CU-02 | `registro.js` | CP-REG-01, CP-REG-02, CP-REG-03, CP-HOR-05 | Verificado |
+| RF-05 | NEC-02 | — | HU-10 | CU-02 | `registro.js` | CP-REG-01, CP-REG-02, CP-REG-03, CP-HOR-05, CP-VAL-01 a CP-VAL-09 | Verificado |
 | RF-06 | NEC-03 | Req 2 | HU-03 | CU-02 | `calculo.js` | CP-CAL-03, CP-CAL-05, CP-REG-05, CP-REG-06, CP-REG-12 | Verificado |
 | RF-07 | NEC-03 | Req 2 | HU-03 | CU-02 | `calculo.js` | CP-CAL-01, CP-REG-07 | Verificado |
 | RF-08 | NEC-04 | Req 4 | HU-05 | CU-02 | `calculo.js` | CP-CAL-02, CP-CAL-04, CP-CAL-06, CP-CAL-07 | Verificado |
@@ -24,7 +24,7 @@ Permite seguir cada requisito desde su origen hasta su prueba. Si cambia un requ
 | RF-14 | NEC-07 | Req 5 | HU-07 | CU-04 | `grafica.js` | CP-GRA-01 a CP-GRA-04 | Verificado |
 | RF-15 | NEC-08 | Req 5 | HU-08 | CU-05 | `foto.js`, `app.js` | CP-FOT-03 a CP-FOT-09, CP-FOT-14; CP-FOT-01 (manual) | Verificado (cámara simulada) |
 | RF-16 | NEC-09 | — | HU-13 | CU-04 | `app.js` | CP-HIS-01 | Verificado |
-| RF-17 | NEC-09 | — | HU-14 | CU-06 | `app.js` | CP-CSV-01 (manual) | Implementado |
+| RF-17 | NEC-09 | — | HU-14 | CU-06 | `app.js` | CP-CSV-02; CP-CSV-01 (manual) | Implementado |
 | RF-18 | NEC-09 | — | — | CU-07 | `app.js`, `almacen.js` | CP-DAT-01 a CP-DAT-03 | Verificado |
 | RF-19 | NEC-08 | — | HU-08 | CU-05 | `foto.js` | CP-FOT-12, CP-FOT-13 | Verificado |
 | RF-20 | NEC-08 | — | HU-08 | CU-05 | `foto.js` | CP-FOT-10, CP-FOT-11; CP-FOT-02 (manual) | Verificado (cámara simulada) |
@@ -38,7 +38,7 @@ Permite seguir cada requisito desde su origen hasta su prueba. Si cambia un requ
 | RNF-03 Navegadores | HTML, CSS y JavaScript estándar, sin dependencias | CP-NAV-01 (pendiente) | Implementado |
 | RNF-04 Eficiencia | Sin servidor; cálculo local | Inspección | Implementado |
 | RNF-05 Fiabilidad | `localStorage` con respaldo en memoria | CP-REG-11, CP-STO-01 (pendiente) | Implementado |
-| RNF-06 Seguridad | Ingreso y clave (con la limitación documentada) | Inspección de `js/config.js` | Implementado |
+| RNF-06 Seguridad | Ingreso y clave (con la limitación documentada); textos mostrados solo como texto; CSV sin fórmulas | Inspección de `js/config.js`; CP-VAL-02, CP-VAL-05, CP-CSV-02 | Implementado |
 | RNF-07 Accesibilidad | Etiquetas, `role="alert"`, `aria-live`, foco visible, reducir movimiento | CP-ACC-01 (pendiente) | Implementado |
 | RNF-08 Mantenibilidad | Módulos y configuración central | Inspección; `npm test` | Verificado |
 | RNF-09 Portabilidad | Archivos estáticos que abren con doble clic | Demostración | Verificado |

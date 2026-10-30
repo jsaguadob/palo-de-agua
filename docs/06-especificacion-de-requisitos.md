@@ -94,7 +94,7 @@ Ingreso · Registro de aguacero · Cálculo frente al estándar y ajuste · Relo
 | ID | El sistema deberá… | Prior. | Origen | Verif. |
 | --- | --- | --- | --- | --- |
 | RF-04 | Pedir dirección, zona, quién registra y precipitación en mm, y permitir **elegir** (sin escribir) la hora de inicio y la de fin en tres listas: hora (1 a 12), minutos (de 5 en 5) y a. m./p. m. | M | Caso · Req 2 | T |
-| RF-05 | Validar los datos: campos obligatorios, hora de fin posterior a la de inicio, mm mayores que 0 y no más de 500. | M | Equipo | T |
+| RF-05 | Validar los datos antes de guardar: campos obligatorios; el nombre de quien registra solo con letras (sin números ni símbolos, de 2 a 60 caracteres) y con aviso mientras se escribe; la dirección de 3 a 100 caracteres, con al menos una letra y sin símbolos especiales; hora de fin posterior a la de inicio; mm mayores que 0 y no más de 500. | M | Equipo | T |
 | RF-06 | Comparar los mm con el estándar de 14 mm e indicar por cuánto lo pasa (o que no lo pasa). | M | Caso · Req 2 | T |
 | RF-07 | Mostrar la cuenta `mm × 14 × horas = base`. | M | Caso · Req 2 | T |
 | RF-08 | Sumar el 5,3 % a la base si el aguacero inicia desde las 3:00 p. m. y antes de las 6:00 p. m. | M | Caso · Req 4 | T |
@@ -116,7 +116,7 @@ Ingreso · Registro de aguacero · Cálculo frente al estándar y ajuste · Relo
 | RF-14 | Mostrar una gráfica de barras (hasta 8 registros) con la línea del estándar de 14 mm; barra naranja si pasa y azul si no. | M | Caso · Req 5 | T, D |
 | RF-15 | Permitir **tomar** una foto de la zona con la cámara del dispositivo: pedir permiso, mostrar una vista previa, permitir girar entre cámaras (si hay más de una), capturar o cancelar, y asociar la foto al registro (tomada antes o después de guardarlo). | M | Caso · Req 5 | T, D |
 | RF-16 | Listar los registros guardados, del más reciente al más antiguo. | S | Equipo | T |
-| RF-17 | Exportar los registros a un archivo CSV. | C | Equipo | D |
+| RF-17 | Exportar los registros a un archivo CSV, neutralizando los textos que empiecen con `=`, `+`, `-` o `@` para que Excel no los tome como fórmula. | C | Equipo | T, D |
 | RF-18 | Permitir cargar datos de ejemplo y borrar todos los registros (con confirmación). | C | Equipo | T |
 | RF-19 | Permitir **subir** una imagen desde el dispositivo como alternativa a la cámara, y rechazar los archivos que no sean imágenes. | S | Equipo | T |
 | RF-20 | Si la cámara no está disponible (sin permiso, sin cámara o conexión no segura), avisar a la persona y recomendarle usar «Subir foto». | S | Equipo | T |
@@ -130,7 +130,7 @@ Ingreso · Registro de aguacero · Cálculo frente al estándar y ajuste · Relo
 | RNF-03 | Compatibilidad | Funcionar en navegadores actuales (Chrome, Edge, Firefox, Safari). La cámara depende de que el navegador permita `getUserMedia`. | D |
 | RNF-04 | Eficiencia | Calcular al instante y cargar sin servidor; el reloj de espera dura 2,8 s. | D |
 | RNF-05 | Fiabilidad | No perder registros al recargar; si `localStorage` falla, seguir funcionando en memoria y avisar. | T |
-| RNF-06 | Seguridad | Limitar el acceso al personal autorizado. *Limitación:* las credenciales están en el código del cliente, por lo que no es seguro para uso real. | I |
+| RNF-06 | Seguridad | Limitar el acceso al personal autorizado; mostrar lo que escribe la persona solo como texto (nunca como código HTML) y neutralizar fórmulas en el CSV. *Limitación:* las credenciales están en el código del cliente, por lo que no es seguro para uso real. | I, T |
 | RNF-07 | Accesibilidad | Usar etiquetas en los campos, foco visible, mensajes anunciables (`role="alert"`, `aria-live`) y respetar «reducir movimiento». | I |
 | RNF-08 | Mantenibilidad | Estar dividido en módulos con las reglas del negocio centralizadas en `js/config.js` y pruebas automáticas. | I |
 | RNF-09 | Portabilidad | Abrirse con doble clic en `index.html`, sin instalar nada. | D |
@@ -157,10 +157,10 @@ Entidad **Registro** (se guarda como JSON en `localStorage`, clave `palo-de-agua
 | `id` | texto | Único: marca de tiempo + zona. |
 | `fecha` | texto ISO 8601 | Momento del registro. |
 | `zona` | texto | Una de la lista de zonas. |
-| `direccion` | texto | Mínimo 3 caracteres. |
+| `direccion` | texto | De 3 a 100 caracteres; letras, números y `. , # ° ' / ( ) -`; al menos una letra. |
 | `horaInicio`, `horaFin` | texto `HH:MM` | Fin posterior a inicio. |
 | `milimetros` | número | Mayor que 0 y hasta 500. |
-| `registradoPor` | texto | Mínimo 2 caracteres. |
+| `registradoPor` | texto | De 2 a 60 caracteres; solo letras (con tildes, ñ y ü), espacios, punto, apóstrofo y guion. Sin números ni símbolos. |
 | `pasaEstandar` | booleano | `milimetros > 14`. |
 | `excesoMm` | número | `max(0, milimetros − 14)`. |
 | `ajusteAplicado` | booleano | RN-3. |

@@ -5,7 +5,7 @@
 | Nivel | Qué prueba | Herramienta | Dónde |
 | --- | --- | --- | --- |
 | Unitarias | La función de cálculo (base, ajuste, exceso, límites). | Node.js (`assert`) | `tests/calculo.test.js` |
-| De punta a punta | Una persona usando la aplicación: ingreso, selección de horas, validaciones, registro, reloj, clave, foto (con cámara simulada), gráfica, historial, ejemplo y borrado. | Node.js + jsdom (navegador simulado) | `tests/e2e.test.js` |
+| De punta a punta | Una persona usando la aplicación: ingreso, selección de horas, validaciones (nombre, dirección, horas y milímetros), registro, reloj, clave, foto (con cámara simulada), gráfica, historial, ejemplo y borrado. | Node.js + jsdom (navegador simulado) | `tests/e2e.test.js` |
 | Manuales | Cámara física, descarga de archivos, navegadores, teclado. | Revisión humana | Sección 9.4 |
 
 **Cómo ejecutarlas:**
@@ -18,7 +18,7 @@ npm test
 ## 9.2 Resultado de la última ejecución
 
 - **Fecha:** 29/10/2026.
-- **Automáticas:** 55 de 55 pruebas de punta a punta pasaron, más las pruebas unitarias del cálculo.
+- **Automáticas:** 65 de 65 pruebas de punta a punta pasaron, más las pruebas unitarias del cálculo.
 - **Fallas:** 0.
 
 ## 9.3 Pruebas automáticas
@@ -44,6 +44,16 @@ npm test
 | CP-REG-01 | RF-05 | Formulario vacío: muestra los 6 errores | Pasó |
 | CP-REG-02 | RF-05 | Hora de fin anterior a la de inicio: error | Pasó |
 | CP-REG-03 | RF-05 | Milímetros negativos: error | Pasó |
+| CP-VAL-01 | RF-05 | Un nombre con números («Laura2», «123») se rechaza | Pasó |
+| CP-VAL-02 | RF-05 | Un nombre con símbolos («Laura@#», «<b>x</b>») se rechaza | Pasó |
+| CP-VAL-03 | RF-05 | Nombres reales con tildes, ñ, apóstrofo, guion y punto se aceptan | Pasó |
+| CP-VAL-04 | RF-05 | Un nombre de 1 letra o de más de 60 caracteres se rechaza | Pasó |
+| CP-VAL-05 | RF-05 | Una dirección solo con números o símbolos se rechaza | Pasó |
+| CP-VAL-06 | RF-05 | Direcciones normales («Cra. 28D # 72-15», «Calle 14, Jamundí») se aceptan | Pasó |
+| CP-VAL-07 | RF-05 | Un nombre de solo espacios se rechaza | Pasó |
+| CP-CSV-02 | RF-17 | En el CSV, un texto que empieza con «=» se neutraliza para que Excel no lo tome como fórmula | Pasó |
+| CP-VAL-08 | RF-05 | Mientras se escribe, un número en el nombre muestra el aviso al instante | Pasó |
+| CP-VAL-09 | RF-05 | Al corregir el nombre, el aviso desaparece | Pasó |
 | CP-REG-04 | RF-09 | Mientras calcula: botón deshabilitado y mensaje «Calculando…» | Pasó |
 | CP-REG-05 | RF-06 | El resultado muestra 22 mm | Pasó |
 | CP-REG-06 | RF-06 | Muestra «Pasa el estándar de Cali por 8 mm» | Pasó |

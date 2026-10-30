@@ -72,6 +72,21 @@ const t = (id, rf, desc, ok, extra) => {
   t('CP-REG-02', 'RF-05', 'Hora de fin anterior a la de inicio: error', /después/.test($('m-horaFin').textContent), $('m-horaFin').textContent);
   t('CP-REG-03', 'RF-05', 'Milímetros negativos: error', /mayores que 0/.test($('m-milimetros').textContent), $('m-milimetros').textContent);
 
+  // Validación de nombre y dirección
+  const V = (o) => PA.registro.validar(Object.assign({ direccion: 'Vía a Pance, km 2', zona: 'Pance', registradoPor: 'Laura Quintero', horaInicio: '10:00', horaFin: '11:00', milimetros: '10' }, o));
+  t('CP-VAL-01', 'RF-05', 'Un nombre con números («Laura2», «123») se rechaza', !V({ registradoPor: 'Laura2' }).ok && !V({ registradoPor: '123' }).ok && /letras/.test(V({ registradoPor: '123' }).errores.registradoPor));
+  t('CP-VAL-02', 'RF-05', 'Un nombre con símbolos («Laura@#», «<b>x</b>») se rechaza', !V({ registradoPor: 'Laura@#' }).ok && !V({ registradoPor: '<b>x</b>' }).ok);
+  t('CP-VAL-03', 'RF-05', 'Nombres reales con tildes, ñ, apóstrofo, guion y punto se aceptan', ['María José Núñez', "Dan O'Brien", 'Ana-María Pérez', 'J. Pérez', 'Ñandú Güiza'].every((n) => V({ registradoPor: n }).ok));
+  t('CP-VAL-04', 'RF-05', 'Un nombre de 1 letra o de más de 60 caracteres se rechaza', !V({ registradoPor: 'A' }).ok && !V({ registradoPor: 'a'.repeat(61) }).ok);
+  t('CP-VAL-05', 'RF-05', 'Una dirección solo con números o símbolos se rechaza', !V({ direccion: '12345' }).ok && !V({ direccion: '###' }).ok && !V({ direccion: '<script>alert(1)</script>' }).ok);
+  t('CP-VAL-06', 'RF-05', 'Direcciones normales («Cra. 28D # 72-15», «Calle 14, Jamundí») se aceptan', ['Cra. 28D # 72-15', 'Calle 14, Jamundí', 'Av. 9N con calle 17', 'Vía a Pance, km 2'].every((x) => V({ direccion: x }).ok));
+  t('CP-VAL-07', 'RF-05', 'Un nombre de solo espacios se rechaza', !V({ registradoPor: '     ' }).ok);
+  t('CP-CSV-02', 'RF-17', 'En el CSV, un texto que empieza con «=» se neutraliza para que Excel no lo tome como fórmula', PA.util.csvSeguro('=1+1') === "'=1+1" && PA.util.csvSeguro('@x') === "'@x" && PA.util.csvSeguro('Pance') === 'Pance');
+  set('r-registrador', 'Laura 123'); $('r-registrador').dispatchEvent(new w.Event('input'));
+  t('CP-VAL-08', 'RF-05', 'Mientras se escribe, un número en el nombre muestra el aviso al instante', /letras/.test($('m-registradoPor').textContent), $('m-registradoPor').textContent);
+  set('r-registrador', 'Laura Quintero'); $('r-registrador').dispatchEvent(new w.Event('input'));
+  t('CP-VAL-09', 'RF-05', 'Al corregir el nombre, el aviso desaparece', $('m-registradoPor').textContent === '');
+
   // Registro válido
   hora('horaInicio', '15:40'); hora('horaFin', '17:10'); set('r-mm', '22'); submit($('form-registro'));
   t('CP-REG-04', 'RF-09', 'Mientras calcula: botón deshabilitado y mensaje «Calculando…»', $('btn-registrar').disabled && /Calculando/.test($('res-estado').textContent));

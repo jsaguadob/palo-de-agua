@@ -50,13 +50,13 @@
       <form class="boleta" id="form-registro" novalidate>
         <h2>Registrar aguacero</h2>
         <label for="r-direccion">Dirección de la zona</label>
-        <input class="campo" id="r-direccion" name="direccion" type="text" placeholder="Ej.: Vía a Pance, km 2" autocomplete="off">
+        <input class="campo" id="r-direccion" name="direccion" type="text" maxlength="100" placeholder="Ej.: Vía a Pance, km 2" autocomplete="off">
         <p class="msg" id="m-direccion"></p>
         <div class="dos">
           <div><label for="r-zona">Zona</label>
             <select class="campo" id="r-zona" name="zona"></select><p class="msg" id="m-zona"></p></div>
           <div><label for="r-registrador">Quién registra</label>
-            <input class="campo" id="r-registrador" name="registradoPor" type="text" placeholder="Ej.: Laura Quintero" autocomplete="off"><p class="msg" id="m-registradoPor"></p></div>
+            <input class="campo" id="r-registrador" name="registradoPor" type="text" maxlength="60" placeholder="Ej.: Laura Quintero" autocomplete="off"><p class="msg" id="m-registradoPor"></p></div>
           <div><label id="l-inicio">Hora de inicio</label>
             <div class="hora" id="g-horaInicio" role="group" aria-labelledby="l-inicio"></div>
             <input type="hidden" id="r-inicio" name="horaInicio"><p class="msg" id="m-horaInicio"></p></div>

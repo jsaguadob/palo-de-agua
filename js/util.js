@@ -23,5 +23,10 @@
     if (texto != null) e.textContent = texto;
     return e;
   }
-  PA.util = { num: num, hora12: hora12, fecha: fecha, el: el };
+  /* Evita que Excel tome un texto como fórmula (=, +, -, @): le antepone un apóstrofo */
+  function csvSeguro(v) {
+    v = String(v);
+    return /^[=+\-@\t\r]/.test(v) ? "'" + v : v;
+  }
+  PA.util = { num: num, hora12: hora12, fecha: fecha, el: el, csvSeguro: csvSeguro };
 })(typeof window !== 'undefined' ? window : globalThis);
