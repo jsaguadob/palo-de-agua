@@ -4,13 +4,21 @@ Aplicación web para registrar y vigilar la lluvia por zonas en Cali. El nombre 
 
 Caso de estudio: monitoreo de lluvia y precipitación (HTML, CSS y JavaScript).
 
+## Enlaces
+
+| Qué | Dónde |
+| --- | --- |
+| Aplicación (Netlify) | https://palodeagua.netlify.app/ |
+| Aplicación (GitHub Pages) | https://jsaguadob.github.io/palo-de-agua/ |
+| Diseño en Figma | https://www.figma.com/design/hGBPfQlUrDeMO975bGwKbA |
+
 ## Estado
 
 Aplicación **funcionando** (HTML, CSS y JavaScript, sin servidor). Abre `index.html` en el navegador para usarla.
 
 ## Cómo usarla
 
-1. Abre `index.html` (doble clic) o la página publicada.
+1. Abre https://palodeagua.netlify.app/ , o `index.html` (doble clic) en tu computador.
 2. Ingresa con usuario `CVC` y contraseña `Lluvias`.
 3. Llena el formulario (las horas se eligen en listas, no se escriben) y pulsa **Calcular y registrar**. El reloj gira y luego aparece el resultado frente al estándar de 14 mm.
 4. Para registrar otra zona, pulsa **Registrar otra zona** y escribe la clave de seguridad: `AGUA1`.
