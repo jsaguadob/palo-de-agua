@@ -36,6 +36,8 @@ flowchart TB
 | `calculo.js` sin acceso al DOM | Se puede probar con Node sin navegador. |
 | Gráfica en SVG generado por código | Escala sin perder nitidez y respeta el estilo de papel milimetrado. |
 | Fotos reducidas a 800 px (JPEG 72 %) | Caben en el límite de `localStorage` (unos 5 MB). |
+| Cámara con `getUserMedia` y un botón aparte para subir | Funciona igual en computador y celular, con vista previa; si la cámara falla, «Subir foto» siempre está disponible. |
+| Apagar la cámara al capturar, cancelar o cerrar | Respeta la privacidad y libera la cámara. |
 | Alerta y confirmación propias (no `alert()` ni `confirm()`) | Funcionan en todos los entornos y se pueden estilizar. |
 | Sesión en `sessionStorage` | La sesión termina al cerrar la pestaña. |
 
@@ -51,7 +53,7 @@ flowchart TB
 | `reloj.js` | Girar, mostrar el tramo, volver a reposo. | RF-09, RF-10 |
 | `clave.js` | 5 casillas con avance automático y validación. | RF-13 |
 | `grafica.js` | Dibujar el SVG de barras y la línea del estándar. | RF-14 |
-| `foto.js` | Leer la imagen y reducirla. | RF-15 |
+| `foto.js` | Abrir la cámara (`getUserMedia`), capturar, girar, subir una imagen, reducirla y avisar si la cámara no está disponible. | RF-15, RF-19, RF-20 |
 | `almacen.js` | Leer, agregar, actualizar y borrar registros. | RF-11, RF-18 |
 | `app.js` | Conectar eventos, pantallas, historial y CSV. | RF-02, RF-12, RF-16, RF-17 |
 

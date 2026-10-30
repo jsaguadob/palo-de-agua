@@ -158,8 +158,8 @@
   /* ---------- Foto (Req 5) ---------- */
   function ponerFoto(url) {
     var img = $('foto-vista'), caja = $('foto-caja');
-    if (url) { img.src = url; img.hidden = false; caja.classList.add('con-foto'); $('btn-foto').textContent = 'Cambiar foto'; }
-    else { img.removeAttribute('src'); img.hidden = true; caja.classList.remove('con-foto'); $('btn-foto').textContent = 'Tomar foto de la zona'; }
+    if (url) { img.src = url; img.hidden = false; caja.classList.add('con-foto'); }
+    else { img.removeAttribute('src'); img.hidden = true; caja.classList.remove('con-foto'); }
   }
   function alTenerFoto(url) {
     ponerFoto(url);
@@ -244,7 +244,11 @@
     Object.keys(HORAS).forEach(armarHora);
     PA.clave.init($('casillas'));
     PA.reloj.reposo();
-    PA.foto.init($('foto-input'), $('btn-foto'), alTenerFoto, toast);
+    PA.foto.init({
+      input: $('foto-input'), btnSubir: $('btn-subir'), btnTomar: $('btn-tomar'), modal: $('camara'), video: $('cam-video'),
+      btnCapturar: $('cam-capturar'), btnCancelar: $('cam-cancelar'), btnGirar: $('cam-girar'), msg: $('cam-msg'),
+      onFoto: alTenerFoto, onError: toast
+    });
     $('form-ingreso').addEventListener('submit', enviarIngreso);
     $('form-registro').addEventListener('submit', enviarRegistro);
     $('form-clave').addEventListener('submit', enviarClave);

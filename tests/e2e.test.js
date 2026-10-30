@@ -88,6 +88,44 @@ const t = (id, rf, desc, ok, extra) => {
   t('CP-GRA-01', 'RF-14', 'La gráfica muestra una barra naranja para la zona que pasa el estándar', d.querySelectorAll('#grafica rect[fill="#F28C28"]').length >= 1 && /Pance/.test($('grafica').textContent));
   t('CP-HIS-01', 'RF-16', 'El historial tiene una fila por registro', d.querySelectorAll('#tabla-historial tbody tr').length === 1);
 
+
+  // Foto: cámara simulada (la cámara real se prueba a mano, ver docs/09)
+  let paradas = 0, pedidos = [], modo = 'ok';
+  const flujo = { getTracks: () => [{ stop() { paradas++; } }] };
+  Object.defineProperty(w.navigator, 'mediaDevices', { configurable: true, value: {
+    getUserMedia: async (c) => { pedidos.push(c); if (modo === 'denegado') { const e = new Error('x'); e.name = 'NotAllowedError'; throw e; } return flujo; },
+    enumerateDevices: async () => [{ kind: 'videoinput' }, { kind: 'videoinput' }] } });
+  Object.defineProperty(w.HTMLVideoElement.prototype, 'videoWidth', { get: () => 640 });
+  Object.defineProperty(w.HTMLVideoElement.prototype, 'videoHeight', { get: () => 480 });
+  w.HTMLMediaElement.prototype.play = () => Promise.resolve();
+  w.HTMLCanvasElement.prototype.getContext = () => ({ drawImage() {} });
+  w.HTMLCanvasElement.prototype.toDataURL = () => 'data:image/jpeg;base64,FOTO';
+  t('CP-FOT-03', 'RF-15', 'El recuadro ofrece dos botones: «Tomar foto» y «Subir foto»', $('btn-tomar').textContent === 'Tomar foto' && $('btn-subir').textContent === 'Subir foto');
+  $('btn-tomar').click(); await wait(30);
+  t('CP-FOT-04', 'RF-15', '«Tomar foto» activa la cámara (trasera por defecto) y muestra la vista previa', !$('camara').hidden && pedidos.length === 1 && pedidos[0].video.facingMode.ideal === 'environment' && pedidos[0].audio === false);
+  t('CP-FOT-05', 'RF-15', 'Con más de una cámara aparece el botón «Girar cámara»', !$('cam-girar').hidden);
+  $('cam-girar').click(); await wait(30);
+  t('CP-FOT-06', 'RF-15', '«Girar cámara» cambia a la cámara frontal', pedidos.length === 2 && pedidos[1].video.facingMode.ideal === 'user');
+  const antes = paradas;
+  $('cam-capturar').click();
+  t('CP-FOT-07', 'RF-15', '«Capturar» muestra la foto, cierra la cámara y la apaga', $('camara').hidden && !$('foto-vista').hidden && /FOTO/.test($('foto-vista').src) && paradas > antes);
+  t('CP-FOT-08', 'RF-15', 'Foto tomada con el registro ya guardado: queda asociada y aparece en el historial', /FOTO/.test(PA.almacen.todos()[0].foto || '') && d.querySelectorAll('#tabla-historial .miniatura').length === 1);
+  $('btn-tomar').click(); await wait(30);
+  const p2 = paradas; $('cam-cancelar').click();
+  t('CP-FOT-09', 'RF-15', '«Cancelar» cierra la cámara y la apaga sin cambiar la foto', $('camara').hidden && paradas > p2);
+  modo = 'denegado'; $('btn-tomar').click(); await wait(30);
+  t('CP-FOT-10', 'RF-20', 'Sin permiso a la cámara: aviso que recomienda «Subir foto» y el diálogo se cierra', $('camara').hidden && /permiso/.test($('toast').textContent) && /Subir foto/.test($('toast').textContent), $('toast').textContent);
+  modo = 'ok';
+  const md = w.navigator.mediaDevices; Object.defineProperty(w.navigator, 'mediaDevices', { configurable: true, value: undefined });
+  $('btn-tomar').click(); await wait(10);
+  t('CP-FOT-11', 'RF-20', 'Navegador sin cámara disponible: avisa y recomienda «Subir foto»', $('camara').hidden && /no permite abrir la cámara/.test($('toast').textContent), $('toast').textContent);
+  Object.defineProperty(w.navigator, 'mediaDevices', { configurable: true, value: md });
+  Object.defineProperty($('foto-input'), 'files', { configurable: true, value: [new w.File(['x'], 'notas.txt', { type: 'text/plain' })] });
+  $('foto-input').dispatchEvent(new w.Event('change'));
+  t('CP-FOT-12', 'RF-19', '«Subir foto» rechaza un archivo que no es imagen', /Elige un archivo de imagen/.test($('toast').textContent), $('toast').textContent);
+  let abierto = false; $('foto-input').click = () => { abierto = true; }; $('btn-subir').click();
+  t('CP-FOT-13', 'RF-19', '«Subir foto» abre el selector de archivos del dispositivo', abierto);
+
   // Clave de seguridad
   submit($('form-registro'));
   t('CP-CLA-01', 'RF-12', '«Registrar otra zona» lleva a la pantalla de clave', activa() === 'pantalla-clave', activa());
@@ -108,8 +146,10 @@ const t = (id, rf, desc, ok, extra) => {
 
   // Segundo registro
   set('r-direccion', 'Cra. 52 con calle 1'); set('r-zona', 'Siloé'); set('r-registrador', 'Laura Quintero');
+  $('btn-tomar').click(); await wait(30); $('cam-capturar').click();
   hora('horaInicio', '10:00'); hora('horaFin', '10:45'); set('r-mm', '9'); submit($('form-registro')); await wait(200);
   t('CP-REG-12', 'RF-06', 'Registro de 9 mm de mañana: no pasa el estándar y no lleva ajuste', /No pasa/.test($('res-estado').textContent) && /sin ajuste/.test($('res-cuenta').textContent), $('res-cuenta').textContent);
+  t('CP-FOT-14', 'RF-15', 'Foto tomada antes de calcular: se guarda junto con el nuevo registro', /FOTO/.test(PA.almacen.todos()[PA.almacen.todos().length - 1].foto || ''));
   t('CP-GRA-02', 'RF-14', 'La gráfica muestra una barra azul para la zona que no pasa', d.querySelectorAll('#grafica rect[fill="#3FA7C8"]').length >= 1);
 
   // Datos de ejemplo, gráfica, borrado

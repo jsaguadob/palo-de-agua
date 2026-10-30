@@ -122,19 +122,29 @@ flowchart LR
 | | |
 | --- | --- |
 | **Actor** | Registrador |
-| **Requisitos** | RF-15 · HU-08 |
+| **Requisitos** | RF-15, RF-19, RF-20 · HU-08 |
 | **Precondición** | Sesión iniciada. |
-| **Postcondición** | La foto queda asociada al registro (el actual o el que se guarde a continuación). |
+| **Postcondición** | La foto queda asociada al registro (el que ya se guardó o el que se guarde a continuación). |
 
-**Flujo principal**
-1. El registrador pulsa *Tomar foto de la zona*.
-2. El dispositivo abre la cámara o el selector de archivos.
-3. El registrador elige la imagen.
-4. El sistema la reduce, la muestra como vista previa y la asocia al registro.
+**Flujo principal A: tomar la foto**
+1. El registrador pulsa *Tomar foto*.
+2. El navegador pide permiso para usar la cámara y la persona lo acepta.
+3. El sistema abre una ventana con la vista previa de la cámara (trasera por defecto).
+4. El registrador pulsa *Capturar*.
+5. El sistema reduce la imagen, apaga la cámara, cierra la ventana, muestra la foto en el recuadro y la asocia al registro.
+
+**Flujo principal B: subir la foto**
+1. El registrador pulsa *Subir foto*.
+2. El dispositivo abre el selector de archivos (o la galería).
+3. El registrador elige una imagen.
+4. El sistema la reduce, la muestra en el recuadro y la asocia al registro.
 
 **Flujos alternos**
-- 3a. El archivo no es una imagen: el sistema avisa.
-- 4a. El almacenamiento está lleno: el sistema guarda el registro sin la foto y avisa.
+- 3a. Hay más de una cámara: aparece *Girar cámara* para cambiar entre trasera y frontal.
+- 3b. El registrador pulsa *Cancelar* (o la tecla Esc): el sistema apaga la cámara y cierra la ventana sin cambiar la foto.
+- 2a. La persona niega el permiso, no hay cámara o la conexión no es segura: el sistema avisa y recomienda usar *Subir foto*.
+- B3a. El archivo no es una imagen: el sistema avisa «Elige un archivo de imagen.»
+- 5a. El almacenamiento está lleno: el sistema guarda el registro sin la foto y avisa.
 
 ### CU-06 · Exportar registros
 | | |

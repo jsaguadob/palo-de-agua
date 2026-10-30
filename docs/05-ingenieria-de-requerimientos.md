@@ -16,7 +16,7 @@ flowchart LR
 | Actividad | Qué se hizo | Resultado |
 | --- | --- | --- |
 | Elicitación | Análisis del caso de estudio (requerimientos 1 a 5) y del problema de la lluvia en Cali. | Necesidades NEC-01 a NEC-10 |
-| Análisis | Se clasificaron en funcionales y no funcionales y se priorizaron con MoSCoW. | RF-01 a RF-18 y RNF-01 a RNF-11 |
+| Análisis | Se clasificaron en funcionales y no funcionales y se priorizaron con MoSCoW. | RF-01 a RF-20 y RNF-01 a RNF-11 |
 | Especificación | Se redactaron como "El sistema deberá…" y se modelaron casos de uso. | [ERS](06-especificacion-de-requisitos.md) y [casos de uso](07-casos-de-uso.md) |
 | Validación | Wireframe y mockup como prototipos, aplicación funcionando y pruebas automáticas. | [Plan de pruebas](09-plan-de-pruebas.md) |
 | Gestión | Identificadores únicos, matriz de trazabilidad y control de cambios en Git. | [Trazabilidad](08-matriz-de-trazabilidad.md) |
@@ -54,7 +54,7 @@ flowchart LR
 | NEC-05 | Esperar el cálculo sabiendo que la aplicación trabaja. | RF-09, RF-10 |
 | NEC-06 | Controlar quién registra otra zona. | RF-12, RF-13 |
 | NEC-07 | Ver todas las zonas de un vistazo. | RF-14 |
-| NEC-08 | Dejar evidencia de la zona. | RF-15 |
+| NEC-08 | Dejar evidencia de la zona, tomando la foto en el momento o subiéndola. | RF-15, RF-19, RF-20 |
 | NEC-09 | Consultar lo registrado y sacarlo en un informe. | RF-16, RF-17, RF-18 |
 | NEC-10 | Poder usarla en campo y no perder los datos. | RNF-02, RNF-05, RNF-09 |
 
@@ -63,7 +63,7 @@ flowchart LR
 | Prioridad | Significado | Requisitos |
 | --- | --- | --- |
 | **M** (Must) | Sin esto el caso de estudio no se cumple | RF-01, 02, 04, 05, 06, 07, 08, 09, 11, 12, 13, 14, 15 |
-| **S** (Should) | Importante, pero hay solución alterna | RF-03, 10, 16 |
+| **S** (Should) | Importante, pero hay solución alterna | RF-03, 10, 16, 19, 20 |
 | **C** (Could) | Deseable | RF-17, RF-18 |
 
 ## 5.6 Validación de la calidad de los requisitos

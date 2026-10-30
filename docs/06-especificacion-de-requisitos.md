@@ -42,11 +42,11 @@ flowchart LR
   U[Persona usuaria] --> N[Navegador web]
   N --> A[Palo de Agua<br/>HTML · CSS · JavaScript]
   A --> L[(localStorage)]
-  A -.opcional.-> C[Cámara / archivos]
+  A -.con permiso.-> C[Cámara / archivos]
 ```
 
 ### 2.2 Funciones principales
-Ingreso · Registro de aguacero · Cálculo frente al estándar y ajuste · Reloj de espera · Clave de seguridad · Gráfica por zona · Foto · Historial · Exportación.
+Ingreso · Registro de aguacero · Cálculo frente al estándar y ajuste · Reloj de espera · Clave de seguridad · Gráfica por zona · Foto (tomar con la cámara o subir) · Historial · Exportación.
 
 ### 2.3 Características de los usuarios
 
@@ -59,6 +59,7 @@ Ingreso · Registro de aguacero · Cálculo frente al estándar y ajuste · Relo
 - Debe construirse con **HTML, CSS y JavaScript** (sin servidor).
 - Los datos se guardan en el navegador; `localStorage` ofrece unos 5 MB, por eso las fotos se reducen a 800 px.
 - El diseño debe seguir el wireframe y el mockup.
+- La cámara solo se puede activar desde una página segura (**HTTPS** o `localhost`) y con permiso de la persona; si no, se usa «Subir foto».
 
 ### 2.5 Supuestos y dependencias
 - La persona usa un navegador actual con JavaScript activo.
@@ -72,7 +73,7 @@ Ingreso · Registro de aguacero · Cálculo frente al estándar y ajuste · Relo
 | Tipo | Descripción |
 | --- | --- |
 | Usuario | Tres pantallas: ingreso, panel principal y clave de seguridad, con el estilo «libreta de campo» (papel milimetrado). |
-| Hardware | Cámara del dispositivo (opcional) para la foto. |
+| Hardware | Cámara del dispositivo (opcional) para la foto. Requiere el permiso de la persona. |
 | Software | Navegador web actual. Fuentes Alfa Slab One y Karla de Google Fonts (con respaldo). |
 | Comunicaciones | Ninguna: no se envían datos a ningún servidor. |
 
@@ -113,10 +114,12 @@ Ingreso · Registro de aguacero · Cálculo frente al estándar y ajuste · Relo
 | ID | El sistema deberá… | Prior. | Origen | Verif. |
 | --- | --- | --- | --- | --- |
 | RF-14 | Mostrar una gráfica de barras (hasta 8 registros) con la línea del estándar de 14 mm; barra naranja si pasa y azul si no. | M | Caso · Req 5 | T, D |
-| RF-15 | Permitir tomar o subir una foto de la zona y asociarla al registro. | M | Caso · Req 5 | D |
+| RF-15 | Permitir **tomar** una foto de la zona con la cámara del dispositivo: pedir permiso, mostrar una vista previa, permitir girar entre cámaras (si hay más de una), capturar o cancelar, y asociar la foto al registro (tomada antes o después de guardarlo). | M | Caso · Req 5 | T, D |
 | RF-16 | Listar los registros guardados, del más reciente al más antiguo. | S | Equipo | T |
 | RF-17 | Exportar los registros a un archivo CSV. | C | Equipo | D |
 | RF-18 | Permitir cargar datos de ejemplo y borrar todos los registros (con confirmación). | C | Equipo | T |
+| RF-19 | Permitir **subir** una imagen desde el dispositivo como alternativa a la cámara, y rechazar los archivos que no sean imágenes. | S | Equipo | T |
+| RF-20 | Si la cámara no está disponible (sin permiso, sin cámara o conexión no segura), avisar a la persona y recomendarle usar «Subir foto». | S | Equipo | T |
 
 ### 3.3 Requisitos no funcionales
 
@@ -124,7 +127,7 @@ Ingreso · Registro de aguacero · Cálculo frente al estándar y ajuste · Relo
 | --- | --- | --- | --- |
 | RNF-01 | Usabilidad | Permitir registrar un aguacero en menos de 2 minutos sin capacitación (meta, por medir con usuarios). | D |
 | RNF-02 | Usabilidad / Portabilidad | Verse y funcionar en pantallas desde 360 px de ancho sin desplazamiento horizontal de la página. | D |
-| RNF-03 | Compatibilidad | Funcionar en navegadores actuales (Chrome, Edge, Firefox, Safari). | D |
+| RNF-03 | Compatibilidad | Funcionar en navegadores actuales (Chrome, Edge, Firefox, Safari). La cámara depende de que el navegador permita `getUserMedia`. | D |
 | RNF-04 | Eficiencia | Calcular al instante y cargar sin servidor; el reloj de espera dura 2,8 s. | D |
 | RNF-05 | Fiabilidad | No perder registros al recargar; si `localStorage` falla, seguir funcionando en memoria y avisar. | T |
 | RNF-06 | Seguridad | Limitar el acceso al personal autorizado. *Limitación:* las credenciales están en el código del cliente, por lo que no es seguro para uso real. | I |
@@ -132,7 +135,7 @@ Ingreso · Registro de aguacero · Cálculo frente al estándar y ajuste · Relo
 | RNF-08 | Mantenibilidad | Estar dividido en módulos con las reglas del negocio centralizadas en `js/config.js` y pruebas automáticas. | I |
 | RNF-09 | Portabilidad | Abrirse con doble clic en `index.html`, sin instalar nada. | D |
 | RNF-10 | Localización | Usar español de Colombia: coma decimal, hora de 12 h con «a. m./p. m.» y fecha dd/mm/aaaa. | I |
-| RNF-11 | Privacidad | Mantener datos y fotos solo en el dispositivo de la persona. | I |
+| RNF-11 | Privacidad | Mantener datos y fotos solo en el dispositivo de la persona; el video de la cámara no se graba ni se envía, y la cámara se apaga al capturar o cancelar. | I, T |
 
 ### 3.4 Reglas del negocio
 

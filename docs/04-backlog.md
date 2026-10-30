@@ -17,13 +17,13 @@
 | 7 | HU-06 | Clave de seguridad | E1 | 3 | M | 5 | 2 | Hecho |
 | 8 | HU-11 | Conservar registros al recargar | E5 | — | M | 3 | 3 | Hecho |
 | 9 | HU-07 | Gráfica de barras por zona | E3 | 5 | M | 8 | 3 | Hecho |
-| 10 | HU-08 | Foto de la zona | E4 | 5 | M | 5 | 3 | Hecho |
+| 10 | HU-08 | Tomar o subir la foto de la zona | E4 | 5 | M | 8 | 3 | Hecho |
 | 11 | HU-09 | Cerrar sesión | E1 | 1 | S | 2 | 3 | Hecho |
 | 12 | HU-12 | Uso en celular (responsive) | E5 | — | S | 5 | 4 | Hecho |
 | 13 | HU-13 | Historial de registros | E3 | — | S | 5 | 4 | Hecho |
 | 14 | HU-14 | Exportar registros a CSV | E5 | — | C | 3 | 4 | Hecho |
 
-**Total estimado:** 56 puntos.
+**Total estimado:** 59 puntos.
 
 > **Nota:** las 14 historias quedaron implementadas en una sola entrega. Los sprints son el plan propuesto; el estado muestra el resultado final.
 
@@ -45,7 +45,7 @@
 | 0 | Diseño y documentación | — | — |
 | 1 | Entrar y registrar un aguacero | HU-01, HU-02, HU-10 | 11 |
 | 2 | Calcular y proteger el registro | HU-03, HU-04, HU-05, HU-06 | 14 |
-| 3 | Ver y respaldar la información | HU-07, HU-08, HU-09, HU-11 | 18 |
+| 3 | Ver y respaldar la información | HU-07, HU-08, HU-09, HU-11 | 21 |
 | 4 | Pulido y extras | HU-12, HU-13, HU-14 | 13 |
 
 ## Definición de "Hecho"
@@ -65,4 +65,4 @@ Una historia está terminada cuando:
 | La fórmula del cálculo no está confirmada | Resultados incorrectos | Aclararla con el enunciado antes del Sprint 2. |
 | Credenciales y clave escritas en el código | No son seguras | Aceptable solo para el caso de estudio; documentarlo. |
 | La foto en `localStorage` ocupa mucho espacio | Se llena el almacenamiento | Reducir el tamaño de la imagen antes de guardarla. |
-| Permiso de cámara denegado | No se puede tomar foto | Ofrecer subir una imagen. |
+| Permiso de cámara denegado o conexión sin HTTPS | No se puede tomar foto | Avisar y ofrecer «Subir foto» (RF-20). |

@@ -5,8 +5,8 @@
 | Nivel | Qué prueba | Herramienta | Dónde |
 | --- | --- | --- | --- |
 | Unitarias | La función de cálculo (base, ajuste, exceso, límites). | Node.js (`assert`) | `tests/calculo.test.js` |
-| De punta a punta | Una persona usando la aplicación: ingreso, validaciones, registro, reloj, clave, gráfica, historial, ejemplo y borrado. | Node.js + jsdom (navegador simulado) | `tests/e2e.test.js` |
-| Manuales | Cámara, descarga de archivos, navegadores, teclado. | Revisión humana | Sección 9.4 |
+| De punta a punta | Una persona usando la aplicación: ingreso, selección de horas, validaciones, registro, reloj, clave, foto (con cámara simulada), gráfica, historial, ejemplo y borrado. | Node.js + jsdom (navegador simulado) | `tests/e2e.test.js` |
+| Manuales | Cámara física, descarga de archivos, navegadores, teclado. | Revisión humana | Sección 9.4 |
 
 **Cómo ejecutarlas:**
 
@@ -18,7 +18,7 @@ npm test
 ## 9.2 Resultado de la última ejecución
 
 - **Fecha:** 29/10/2026.
-- **Automáticas:** 43 de 43 pruebas de punta a punta pasaron, más las pruebas unitarias del cálculo.
+- **Automáticas:** 55 de 55 pruebas de punta a punta pasaron, más las pruebas unitarias del cálculo.
 - **Fallas:** 0.
 
 ## 9.3 Pruebas automáticas
@@ -53,6 +53,17 @@ npm test
 | CP-REG-10 | RF-12 | El formulario se bloquea y el botón dice «Registrar otra zona» | Pasó |
 | CP-GRA-01 | RF-14 | La gráfica muestra una barra naranja para la zona que pasa el estándar | Pasó |
 | CP-HIS-01 | RF-16 | El historial tiene una fila por registro | Pasó |
+| CP-FOT-03 | RF-15 | El recuadro ofrece dos botones: «Tomar foto» y «Subir foto» | Pasó |
+| CP-FOT-04 | RF-15 | «Tomar foto» activa la cámara (trasera por defecto) y muestra la vista previa | Pasó |
+| CP-FOT-05 | RF-15 | Con más de una cámara aparece el botón «Girar cámara» | Pasó |
+| CP-FOT-06 | RF-15 | «Girar cámara» cambia a la cámara frontal | Pasó |
+| CP-FOT-07 | RF-15 | «Capturar» muestra la foto, cierra la cámara y la apaga | Pasó |
+| CP-FOT-08 | RF-15 | Foto tomada con el registro ya guardado: queda asociada y aparece en el historial | Pasó |
+| CP-FOT-09 | RF-15 | «Cancelar» cierra la cámara y la apaga sin cambiar la foto | Pasó |
+| CP-FOT-10 | RF-20 | Sin permiso a la cámara: aviso que recomienda «Subir foto» y el diálogo se cierra | Pasó |
+| CP-FOT-11 | RF-20 | Navegador sin cámara disponible: avisa y recomienda «Subir foto» | Pasó |
+| CP-FOT-12 | RF-19 | «Subir foto» rechaza un archivo que no es imagen | Pasó |
+| CP-FOT-13 | RF-19 | «Subir foto» abre el selector de archivos del dispositivo | Pasó |
 | CP-CLA-01 | RF-12 | «Registrar otra zona» lleva a la pantalla de clave | Pasó |
 | CP-CLA-02 | RF-13 | La clave tiene 5 casillas | Pasó |
 | CP-CLA-03 | RF-13 | Clave incorrecta: aparece la alerta | Pasó |
@@ -61,6 +72,7 @@ npm test
 | CP-CLA-05 | RF-13 | Clave correcta (AGUA1): vuelve al panel con los campos limpios | Pasó |
 | CP-HOR-06 | RF-13 | Al limpiar el formulario las listas de hora vuelven a «--» | Pasó |
 | CP-REG-12 | RF-06 | Registro de 9 mm de mañana: no pasa el estándar y no lleva ajuste | Pasó |
+| CP-FOT-14 | RF-15 | Foto tomada antes de calcular: se guarda junto con el nuevo registro | Pasó |
 | CP-GRA-02 | RF-14 | La gráfica muestra una barra azul para la zona que no pasa | Pasó |
 | CP-DAT-01 | RF-18 | «Cargar ejemplo» agrega 5 registros (total 7) | Pasó |
 | CP-GRA-03 | RF-14 | La gráfica dibuja las barras de los registros | Pasó |
@@ -74,9 +86,8 @@ npm test
 | Código | Requisito | Qué verifica | Resultado |
 | --- | --- | --- | --- |
 | CP-RES-01 | RNF-02 | La aplicación se ve completa, sin desplazamiento horizontal, en un ancho de 390 px. | Pasó (revisión visual con Chromium) |
-| CP-FOT-01 | RF-15 | En un celular, *Tomar foto de la zona* abre la cámara y muestra la vista previa. | **Pendiente** |
-| CP-FOT-02 | RF-15 | Una foto tomada después de guardar queda asociada al registro y aparece en el historial. | **Pendiente** |
-| CP-FOT-03 | RF-15 | Elegir un archivo que no es imagen muestra un aviso. | **Pendiente** |
+| CP-FOT-01 | RF-15 | En un celular y en un computador con cámara física, *Tomar foto* abre la cámara, muestra la vista previa y *Capturar* guarda la foto. | **Parcial**: pasó con la cámara de prueba de Chromium; falta una cámara física y un celular |
+| CP-FOT-02 | RF-20 | En un navegador real, negar el permiso de la cámara muestra el aviso y *Subir foto* sigue funcionando. | **Pendiente** |
 | CP-CSV-01 | RF-17 | *Exportar CSV* descarga un archivo que abre bien en Excel (tildes y decimales con coma). | **Pendiente** |
 | CP-NAV-01 | RNF-03 | La aplicación funciona igual en Chrome, Edge, Firefox y Safari. | **Pendiente** (probada solo en Chromium) |
 | CP-ACC-01 | RNF-07 | Se puede completar un registro usando solo el teclado, y el foco se ve. | **Pendiente** |

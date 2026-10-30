@@ -91,8 +91,11 @@
         <div class="foto" id="foto-caja">
           <i></i><i></i><i></i><i></i>
           <img id="foto-vista" alt="Foto de la zona" hidden>
-          <button type="button" class="foto-btn" id="btn-foto">Tomar foto de la zona</button>
-          <input type="file" id="foto-input" accept="image/*" capture="environment" hidden>
+          <div class="foto-acciones">
+            <button type="button" class="foto-btn" id="btn-tomar">Tomar foto</button>
+            <button type="button" class="foto-btn" id="btn-subir">Subir foto</button>
+          </div>
+          <input type="file" id="foto-input" accept="image/*" hidden>
         </div>
       </div>
 
@@ -133,6 +136,18 @@
     <h2 id="aviso-titulo">Clave incorrecta</h2>
     <p id="aviso-texto"></p>
     <button type="button" class="boton" id="aviso-ok">Entendido</button>
+  </div>
+</div>
+<div class="camara" id="camara" role="dialog" aria-modal="true" aria-labelledby="cam-titulo" hidden>
+  <div class="camara-caja">
+    <h2 id="cam-titulo">Tomar foto de la zona</h2>
+    <video id="cam-video" autoplay playsinline muted></video>
+    <p class="nota" id="cam-msg" role="status"></p>
+    <div class="camara-acciones">
+      <button type="button" class="boton" id="cam-capturar">Capturar</button>
+      <button type="button" class="boton sec" id="cam-girar" hidden>Girar cámara</button>
+      <button type="button" class="boton sec" id="cam-cancelar">Cancelar</button>
+    </div>
   </div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>

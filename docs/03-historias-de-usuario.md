@@ -96,12 +96,17 @@
 
 ## E4 · Evidencia
 
-### HU-08 · Tomar la foto de la zona (Req 5)
-**Como** registrador, **quiero** tomar o subir una foto de la zona **para** dejar evidencia en el reporte.
+### HU-08 · Tomar o subir la foto de la zona (Req 5)
+**Como** registrador, **quiero** tomar la foto con la cámara o subir una imagen **para** dejar evidencia en el reporte.
 
-- **Dado** que estoy en el panel, **cuando** pulso *Tomar foto de la zona*, **entonces** puedo capturar con la cámara o elegir una imagen.
-- **Dado** que elegí una foto, **cuando** guardo el registro, **entonces** la foto queda asociada a ese registro.
-- **Dado** que no doy permiso a la cámara, **cuando** pulso el botón, **entonces** se me ofrece subir una imagen desde el dispositivo.
+- **Dado** que estoy en el panel, **cuando** pulso *Tomar foto*, **entonces** el navegador pide permiso y se abre la cámara con una vista previa.
+- **Dado** que la cámara está abierta, **cuando** pulso *Capturar*, **entonces** la foto aparece en el recuadro y la cámara se apaga.
+- **Dado** que la cámara está abierta, **cuando** pulso *Cancelar*, **entonces** la cámara se apaga y no cambia la foto.
+- **Dado** que el dispositivo tiene varias cámaras, **cuando** pulso *Girar cámara*, **entonces** cambia entre la trasera y la frontal.
+- **Dado** que prefiero otra opción, **cuando** pulso *Subir foto*, **entonces** puedo elegir una imagen del dispositivo.
+- **Dado** que elijo un archivo que no es imagen, **cuando** lo selecciono, **entonces** se me avisa y no se guarda.
+- **Dado** que niego el permiso o no hay cámara, **cuando** pulso *Tomar foto*, **entonces** se me avisa y se me recomienda *Subir foto*.
+- **Dado** que tengo una foto, **cuando** guardo el registro (o ya estaba guardado), **entonces** la foto queda asociada a ese registro y aparece en el historial.
 
 ---
 

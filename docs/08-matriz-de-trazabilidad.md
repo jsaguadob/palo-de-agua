@@ -22,10 +22,12 @@ Permite seguir cada requisito desde su origen hasta su prueba. Si cambia un requ
 | RF-12 | NEC-06 | Req 3 | HU-06 | CU-03 | `app.js` | CP-REG-10, CP-CLA-01 | Verificado |
 | RF-13 | NEC-06 | Req 3 | HU-06 | CU-03 | `clave.js`, `app.js` | CP-CLA-02 a CP-CLA-05, CP-HOR-06 | Verificado |
 | RF-14 | NEC-07 | Req 5 | HU-07 | CU-04 | `grafica.js` | CP-GRA-01 a CP-GRA-04 | Verificado |
-| RF-15 | NEC-08 | Req 5 | HU-08 | CU-05 | `foto.js`, `app.js` | CP-FOT-01 a CP-FOT-03 (manuales) | Implementado |
+| RF-15 | NEC-08 | Req 5 | HU-08 | CU-05 | `foto.js`, `app.js` | CP-FOT-03 a CP-FOT-09, CP-FOT-14; CP-FOT-01 (manual) | Verificado (cámara simulada) |
 | RF-16 | NEC-09 | — | HU-13 | CU-04 | `app.js` | CP-HIS-01 | Verificado |
 | RF-17 | NEC-09 | — | HU-14 | CU-06 | `app.js` | CP-CSV-01 (manual) | Implementado |
 | RF-18 | NEC-09 | — | — | CU-07 | `app.js`, `almacen.js` | CP-DAT-01 a CP-DAT-03 | Verificado |
+| RF-19 | NEC-08 | — | HU-08 | CU-05 | `foto.js` | CP-FOT-12, CP-FOT-13 | Verificado |
+| RF-20 | NEC-08 | — | HU-08 | CU-05 | `foto.js` | CP-FOT-10, CP-FOT-11; CP-FOT-02 (manual) | Verificado (cámara simulada) |
 
 ## 8.2 Requisitos no funcionales
 
@@ -41,7 +43,7 @@ Permite seguir cada requisito desde su origen hasta su prueba. Si cambia un requ
 | RNF-08 Mantenibilidad | Módulos y configuración central | Inspección; `npm test` | Verificado |
 | RNF-09 Portabilidad | Archivos estáticos que abren con doble clic | Demostración | Verificado |
 | RNF-10 Localización | `js/util.js` (coma decimal, 12 h, dd/mm/aaaa) | CP-REG-07 | Verificado |
-| RNF-11 Privacidad | Sin envío de datos a servidores | Inspección | Verificado |
+| RNF-11 Privacidad | Sin envío de datos a servidores; la cámara se apaga al capturar o cancelar | Inspección; CP-FOT-07, CP-FOT-09 | Verificado |
 
 ## 8.3 Reglas del negocio
 
@@ -56,6 +58,6 @@ Permite seguir cada requisito desde su origen hasta su prueba. Si cambia un requ
 
 ## 8.4 Cobertura
 
-- **18 requisitos funcionales:** 16 verificados con pruebas automáticas y 2 implementados con prueba manual pendiente (RF-15 y RF-17).
+- **20 requisitos funcionales:** 19 verificados con pruebas automáticas y 1 implementado con prueba manual pendiente (RF-17). RF-15, RF-19 y RF-20 se probaron con una cámara simulada, y además se comprobó la cámara con la cámara de prueba de Chromium; falta probar con una cámara física y en un celular.
 - **11 requisitos no funcionales:** 5 verificados (RNF-02, 08, 09, 10 y 11) y 6 implementados. De estos, RNF-01, 03, 05 y 07 tienen una prueba manual pendiente; RNF-04 y RNF-06 se revisan por inspección.
-- **Casos de uso:** los 8 tienen requisitos asociados. Seis tienen pruebas automáticas; CU-05 (foto) y CU-06 (CSV) solo tienen pruebas manuales, todavía pendientes.
+- **Casos de uso:** los 8 tienen requisitos asociados. Siete tienen pruebas automáticas; CU-06 (CSV) solo tiene una prueba manual, todavía pendiente.

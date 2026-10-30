@@ -29,7 +29,7 @@
 | `reloj` | Animación de espera antes de mostrar el resultado. | HU-04 |
 | `clave` | Pedir y validar la clave de seguridad. | HU-06 |
 | `grafica` | Dibujar las barras por zona (naranja si pasa el estándar, azul si no). | HU-07 |
-| `foto` | Capturar o subir la foto de la zona. | HU-08 |
+| `foto` | Tomar la foto con la cámara (vista previa, capturar, girar) o subir una imagen, y reducirla. | HU-08 |
 | `almacen` | Guardar y leer los registros en `localStorage`. | HU-11, HU-13 |
 
 ## Modelo de datos (propuesto)
@@ -76,7 +76,7 @@ palo-de-agua/
 │   ├── reloj.js       reloj de espera
 │   ├── clave.js       clave de seguridad
 │   ├── grafica.js     gráfica de barras
-│   ├── foto.js        captura de foto
+│   ├── foto.js        cámara y subida de foto
 │   └── app.js         conecta todo
 ├── img/               logos
 ├── diseno/            wireframe.html y mockup.html
